@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/21 15:13:50 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/21 15:13:50 by marvin           ###   ########.fr       */
+/*   Created: 2023/11/29 12:03:34 by luxojr            #+#    #+#             */
+/*   Updated: 2023/11/29 12:03:34 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void raycaster2D(t_game *game, float ra)
 	{
 		rx = game->player->px;
 		ry = game->player->py;
-		dof = 8;
+		dof = 20;
 	}
-	while (dof < 8)
+	while (dof < 20)
 	{
 		mp = (int)ry / 64 * game->map_w + (int)rx / 64;
 		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] == 1)
@@ -51,7 +51,7 @@ void raycaster2D(t_game *game, float ra)
 			hx = rx;
 			hy = ry;
 			disH = dist(game->player->px, game->player->py, hx, hy);
-			dof = 8;
+			dof = 20;
 		}
 		else
 		{
@@ -82,9 +82,9 @@ void raycaster2D(t_game *game, float ra)
 	{
 		rx = game->player->px;
 		ry = game->player->py;
-		dof = 8;
+		dof = 20;
 	}
-	while (dof < 8)
+	while (dof < 20)
 	{
 		mp = (int)ry / 64 * game->map_w + (int)rx / 64;
 		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] == 1)
@@ -93,7 +93,7 @@ void raycaster2D(t_game *game, float ra)
 			vx = rx;
 			vy = ry;
 			disV = dist(game->player->px, game->player->py, vx, vy);
-			dof = 8;
+			dof = 20;
 		}
 		else
 		{
