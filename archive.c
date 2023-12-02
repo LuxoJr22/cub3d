@@ -14,6 +14,48 @@
 11110111 1110101 101111010001
 11111111 1111111 111111111111
 
+/*int key_manager(int keycode, t_game *game)
+{
+	if (keycode == 100)
+	{
+		//game->player->cm = 1;
+		game->player->pa += 0.1;
+		if (game->player->pa > 2 * PI)
+			game->player->pa -= 2 * PI;
+		game->player->pdx = cos(game->player->pa) * 20;
+		game->player->pdy = sin(game->player->pa) * 20;
+	}
+	if (keycode == 113)
+	{
+		//game->player->cm = -1;
+		game->player->pa -= 0.1;
+		if (game->player->pa < 0)
+			game->player->pa += 2 * PI;
+		game->player->pdx = cos(game->player->pa) * 20;
+		game->player->pdy = sin(game->player->pa) * 20;
+	}
+	if (keycode == 115)
+	{
+		game->player->dy = 1;
+	}
+	if (keycode == 122)
+		game->player->dy = -1;
+	return (1);
+}
+
+int relinput(int keycode, t_game *game)
+{
+	if (keycode == 100)
+		game->player->cm = 0;
+	if (keycode == 113)
+		game->player->cm = 0;
+	if (keycode == 115)
+		game->player->dy = 0;
+	if (keycode == 122)
+		game->player->dy = 0;
+	return (1);
+}*/
+
 
 	/*int dx, dy, p, x, y;
  

@@ -43,6 +43,7 @@ typedef struct s_player {
 	int dx;
 	int	dy;
 	float pa;
+	int cm;
 	float pdy;
 	float pdx;
 }				t_player;
@@ -77,7 +78,9 @@ typedef struct s_game {
 void	draw_back(t_game *game, t_pos start, t_pos length, int color);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_line(t_game *game, t_pos p1, t_pos p2, int color);
-void	draw_cube(t_game *game, int x, int y);
+void	draw_cube(t_game *game, int x, int y, int color);
+void	draw_minimap(t_game *game);
+void	create_img(t_game *game);
 void	get_map(t_game *game, char *name);
 void	draw_player(t_game *game);
 void	raycaster3D(t_game *game);

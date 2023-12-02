@@ -26,28 +26,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void create_img(t_game *game)
-{
-	int	mx;
-	int my;
-	int side;
-
-	mx = 0;
-	my = 0;
-	side = 16;
-	while (my < game->map_h)
-	{
-		while (mx < game->map_w)
-		{
-			if (game->map[my * game->map_w + mx] == 1)
-				draw_cube(game, mx * side , my * side);
-			mx ++;
-		}
-		my ++;
-		mx = 0;
-	}
-}
-
 int scene_manager(t_game *game)
 {
 	t_pos start;
@@ -59,7 +37,6 @@ int scene_manager(t_game *game)
 	game->frame1.addr = mlx_get_data_addr(game->frame1.img, &game->frame1.bits_per_pixel, &game->frame1.line_length, &game->frame1.endian);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->frame2.img, 0, 0);
 
-	
 	start.x = 0;
 	start.y = 0;
 	length.x =  960;
@@ -69,10 +46,9 @@ int scene_manager(t_game *game)
 	start.y += length.y;
 	draw_back(game, start, length, game->floor_color);
 	
-
 	raycaster3D(game);
-	//create_img(game);
-	//draw_player(game);
+	draw_minimap(game);
+	
 	
 	
 	game->frame ++;
@@ -108,6 +84,7 @@ int main()
 	player->pa = 0;
 	player->pdx = cos(player->pa) * 5;
 	player->pdy = sin(player->pa) * 5;
+	player->cm = 0;
 	game->map = map;
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, 960, 640, "Cub3d");

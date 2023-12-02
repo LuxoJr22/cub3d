@@ -17,28 +17,53 @@ int move(t_game *game)
 {
 	int mx;
 	int my;
+	float pa;
 
-	if (game->player->dy == 1)
+	if (game->player->dx == 1)
 	{
-		mx = (int)(game->player->px - (game->player->pdx / 10)) / 64;
-		my = (int)(game->player->py - (game->player->pdy / 10)) / 64;
+		pa = game->player->pa + P2;
+		pa = check_angle(pa);
+		mx = (int)(game->player->px + ((cos(pa) * 5) / 10)) / 64;
+		my = (int)(game->player->py + ((sin(pa) * 5) / 10)) / 64;
 		if (game->map[my * game->map_w + mx] != 1)
 		{
-			game->player->px -= (game->player->pdx / 10);
-			game->player->py -= (game->player->pdy / 10);
+			game->player->px += ((cos(pa) * 5) / 10);
+			game->player->py += ((sin(pa) * 5) / 10);
+		}
+	}
+	if (game->player->dx == -1)
+	{
+		pa = game->player->pa - P2;
+		pa = check_angle(pa);
+		mx = (int)(game->player->px + ((cos(pa) * 5) / 10)) / 64;
+		my = (int)(game->player->py + ((sin(pa) * 5) / 10)) / 64;
+		if (game->map[my * game->map_w + mx] != 1)
+		{
+			game->player->px += ((cos(pa) * 5) / 10);
+			game->player->py += ((sin(pa) * 5) / 10);
+		}
+	}
+	if (game->player->dy == 1)
+	{
+		mx = (int)(game->player->px - ((game->player->pdx) / 10)) / 64;
+		my = (int)(game->player->py - ((game->player->pdy) / 10)) / 64;
+		if (game->map[my * game->map_w + mx] != 1)
+		{
+			game->player->px -= ((game->player->pdx) / 10);
+			game->player->py -= ((game->player->pdy) / 10);
 		}
 	}
 	if (game->player->dy == -1)
 	{
-		mx = (int)(game->player->px + (game->player->pdx / 10)) / 64;
-		my = (int)(game->player->py + (game->player->pdy / 10)) / 64;
+		mx = (int)(game->player->px + ((game->player->pdx) / 10)) / 64;
+		my = (int)(game->player->py + ((game->player->pdy) / 10)) / 64;
 		if (game->map[my * game->map_w + mx] != 1)
 		{
-			game->player->px += (game->player->pdx / 5);
-			game->player->py += (game->player->pdy / 5);
+			game->player->px += ((game->player->pdx) / 5);
+			game->player->py += ((game->player->pdy) / 5);
 		}
 	}
-	if (game->player->dx == 1)
+	if (game->player->cm == 1)
 	{
 		game->player->pa += 0.02;
 		if (game->player->pa > 2 * PI)
@@ -46,7 +71,7 @@ int move(t_game *game)
 		game->player->pdx = cos(game->player->pa) * 5;
 		game->player->pdy = sin(game->player->pa) * 5;
 	}
-	if (game->player->dx == -1)
+	if (game->player->cm == -1)
 	{
 		game->player->pa -= 0.02;
 		if (game->player->pa < 0)

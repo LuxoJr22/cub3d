@@ -1,5 +1,5 @@
 
-SRCS = cub3d.c draw.c keymanager.c player.c raycaster.c utils.c parsing.c
+SRCS = cub3d.c draw.c keymanager.c player.c raycaster.c utils.c parsing.c minimap.c
 
 OBJS = ${SRCS:.c=.o}
 
