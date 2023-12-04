@@ -13,16 +13,18 @@
 #ifndef CUB3D
 # define CUB3D
 
-#include <mlx.h>
-#include <stdlib.h>
-#include "stdio.h"
+# include <mlx.h>
+# include <stdlib.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <unistd.h>
-#include <math.h>
-#define PI 3.1415926535
-#define P2 PI/2
-#define P3 3*PI/2
-#define DR 0.0174533
+# include <math.h>
+# include "parsing_xpm/parsing_xpm.h"
+
+# define PI 3.1415926535
+# define P2 PI/2
+# define P3 3*PI/2
+# define DR 0.0174533
 
 typedef struct	s_data {
 	void	*img;
