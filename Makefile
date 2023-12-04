@@ -1,4 +1,3 @@
-
 SRCS = cub3d.c \
 	   draw.c \
 	   keymanager.c \
@@ -11,17 +10,15 @@ SRCS = cub3d.c \
 	   parsing_xpm/build_colors_chained_list.c \
 	   parsing_xpm/feed_file_lbl.c \
 	   parsing_xpm/feed_xpm_width_height_nbcolors.c \
+	   parsing_xpm/feed_colors_node.c \
 	   parsing_xpm/free_chars.c \
 	   parsing_xpm/free_ntcharss.c \
-	   parsing_xpm/ft_atoi.c \
 	   parsing_xpm/ft_bzero.c \
 	   parsing_xpm/ft_memset.c \
-	   parsing_xpm/ft_split.c \
 	   parsing_xpm/ft_substr.c \
 	   parsing_xpm/get_img_one_chars.c \
 	   parsing_xpm/get_nb_lines.c \
 	   parsing_xpm/get_next_line_bonus.c \
-	   parsing_xpm/get_next_line_bonus.h
 	   parsing_xpm/get_next_line_utils_bonus.c \
 	   parsing_xpm/get_size_ntcharss.c \
 	   parsing_xpm/malloc_full_null_charss.c \

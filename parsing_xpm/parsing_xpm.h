@@ -13,27 +13,8 @@
 #ifndef PARSING_XPM_H
 # define PARSING_XPM_H
 
-
+# include "../cub3d.h"
 # include "get_next_line_bonus.h"
-
-void		add_colors_node(t_xpm *xpm, int i);
-void		build_colors_chained_list(t_xpm *xpm);
-void		feed_file_lbl(t_xpm *xpm);
-void		feed_xpm_width_height_nbcolors(t_xpm *xpm);
-void		free_chars(char **dust);
-void		free_ntcharss(char ***dust);
-int			ft_atoi(char *str);
-void		ft_bzero(void *s, size_t n);
-void		*ft_memset(void *b, int c, size_t len);
-char		**ft_split(char const *s, char sep);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		get_img_one_chars(t_xpm *xpm);
-void		get_nb_lines(t_xpm *xpm);
-int			get_size_ntcharss(char **ntcharss);
-char		**malloc_full_null_charss(int size);
-t_colors	*new_colors();
-t_xpm		*new_xpm(char *filename);
-void		parsing_xpm(char *filename);
 
 typedef struct s_colors	t_colors;
 
@@ -68,5 +49,23 @@ typedef struct s_xpm
 	int			nb_colors;
 	t_colors	*colors;
 } t_xpm;
+
+void		add_colors_node(t_xpm *xpm, int i);
+void		build_colors_chained_list(t_xpm *xpm);
+void		feed_colors_node(t_xpm *xpm, t_colors *colors_node, int i);
+void		feed_file_lbl(t_xpm *xpm);
+void		feed_xpm_width_height_nbcolors(t_xpm *xpm);
+void		free_chars(char **dust);
+void		free_ntcharss(char ***dust);
+void		ft_bzero(void *s, size_t n);
+void		*ft_memset(void *b, int c, size_t len);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+void		get_img_one_chars(t_xpm *xpm);
+void		get_nb_lines(t_xpm *xpm);
+int			get_size_ntcharss(char **ntcharss);
+char		**malloc_full_null_charss(int size);
+t_colors	*new_colors();
+t_xpm		*new_xpm(char *filename);
+void		parsing_xpm(char *filename);
 
 #endif

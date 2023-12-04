@@ -81,6 +81,12 @@ typedef struct s_game {
 	int			map_h;
 	int			map_w;
 	int			map_active;
+	/*
+	t_xpm		*north_xpm;
+	t_xpm		*east_xpm;
+	t_xpm		*south_xpm;
+	t_xpm		*west_xpm;
+	*/
 }				t_game;
 
 void	draw_back(t_game *game, t_pos start, t_pos length, int color);
@@ -100,6 +106,8 @@ void	show_map(t_game *game);
 int 	dist(int x1, int y1, int x2, int y2);
 int		relinput(int keycode, t_game *game);
 int		move(t_game *game);
+char	**ft_split(char *str, char sep);
+int 	ft_atoi(char *str);
 
 float check_angle(float a);
 
