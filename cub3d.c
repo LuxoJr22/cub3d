@@ -42,14 +42,15 @@ int scene_manager(t_game *game)
 	length.x =  960;
 	length.y =  320;
 
-	draw_back(game, start, length, game->ceil_color);
+	draw_back(game, start, length, effect_color(game, game->ceil_color));
 	start.y += length.y;
-	draw_back(game, start, length, game->floor_color);
+	draw_back(game, start, length, effect_color(game, game->floor_color));
 	
 	raycaster3D(game);
-	draw_minimap(game);
-	
-	
+	if (game->map_active == 0)
+		draw_minimap(game);
+	else
+		show_map(game);
 	
 	game->frame ++;
 	if (game->frame % 2 == 0)
@@ -86,6 +87,7 @@ int main()
 	player->pdy = sin(player->pa) * 5;
 	player->cm = 0;
 	game->map = map;
+	game->map_active = 0;
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, 960, 640, "Cub3d");
 	game->player = player;

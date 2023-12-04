@@ -37,6 +37,11 @@ typedef struct s_pos {
 	float y;
 }			t_pos;
 
+typedef struct s_p {
+	int x;
+	int y;
+}			t_p;
+
 typedef struct s_player {
 	float	px;
 	float	py;
@@ -73,19 +78,23 @@ typedef struct s_game {
 	int			ceil_color;
 	int			map_h;
 	int			map_w;
+	int			map_active;
 }				t_game;
 
 void	draw_back(t_game *game, t_pos start, t_pos length, int color);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	draw_line(t_game *game, t_pos p1, t_pos p2, int color);
 void	draw_cube(t_game *game, int x, int y, int color);
+int		add_trgb(int color1, int color2);
 void	draw_minimap(t_game *game);
 void	create_img(t_game *game);
 void	get_map(t_game *game, char *name);
 void	draw_player(t_game *game);
+int 	effect_color(t_game *game, int color);
 void	raycaster3D(t_game *game);
 int		key_manager(int keycode, t_game *game);
 int		get_trgb(int t, int r, int g, int b);
+void	show_map(t_game *game);
 int 	dist(int x1, int y1, int x2, int y2);
 int		relinput(int keycode, t_game *game);
 int		move(t_game *game);

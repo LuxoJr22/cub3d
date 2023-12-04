@@ -210,7 +210,7 @@ void raycaster3D(t_game *game)
 			while (i < 2)
 			{
 				o.x = nb_ray * 2 + i;
-				my_mlx_pixel_put(&game->frame1, o.x, o.y + y, color);
+				my_mlx_pixel_put(&game->frame1, o.x, o.y + y, effect_color(game, color));
 				i ++;
 			}
 			ty += ty_step;

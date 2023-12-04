@@ -26,6 +26,8 @@ int key_manager(int keycode, t_game *game)
 		game->player->dy = 1;
 	if (keycode == 122)
 		game->player->dy = -1;
+	if (keycode == 65289)
+		game->map_active = 1;
 	return (1);
 }
 
@@ -43,5 +45,7 @@ int relinput(int keycode, t_game *game)
 		game->player->dy = 0;
 	if (keycode == 122)
 		game->player->dy = 0;
+	if (keycode == 65289)
+		game->map_active = 0;
 	return (1);
 }

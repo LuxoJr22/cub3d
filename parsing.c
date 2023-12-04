@@ -49,8 +49,10 @@ char	**ft_split(char *str, char sep)
 	act_start = 0;
 	while (str[i])
 	{
-		if (str[i] == sep || str[i + 1] == '\0')
+		if (str[i + 1] == '\0' || str[i] == sep)
 		{
+			if (str[i + 1] == '\0')
+				i ++;
 			ret[nb_word] = malloc(sizeof(char) * (i - start + 1));
 			while (start < i)
 			{
