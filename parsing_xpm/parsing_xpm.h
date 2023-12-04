@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_xpm.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 23:03:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:38:51 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:59:11 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int			get_size_ntcharss(char **ntcharss);
 char		**malloc_full_null_charss(int size);
 t_colors	*new_colors();
 t_xpm		*new_xpm(char *filename);
-void		parsing_xpm(char *filename);
+t_xpm		*parsing_xpm(char *filename);
 
 #endif

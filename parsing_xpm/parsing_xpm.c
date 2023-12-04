@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_xpm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:58:35 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:31:28 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:06:00 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_xpm.h"
 
-void	parsing_xpm(char *filename)
+t_xpm	*parsing_xpm(char *filename)
 {
 	t_xpm	*xpm;
 
@@ -23,4 +23,5 @@ void	parsing_xpm(char *filename)
 	if (xpm->nb_colors)
 		build_colors_chained_list(xpm);
 	get_img_one_chars(xpm);
+	return (xpm);
 }

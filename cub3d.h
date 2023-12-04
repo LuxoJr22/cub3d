@@ -26,6 +26,8 @@
 # define P3 3*PI/2
 # define DR 0.0174533
 
+typedef struct s_xpm t_xpm;
+
 typedef struct	s_data {
 	void	*img;
 	char	*addr;
@@ -87,12 +89,10 @@ typedef struct s_game {
 	int			map_h;
 	int			map_w;
 	int			map_active;
-	/*
 	t_xpm		*north_xpm;
 	t_xpm		*east_xpm;
 	t_xpm		*south_xpm;
 	t_xpm		*west_xpm;
-	*/
 }				t_game;
 
 void	draw_back(t_game *game, t_pos start, t_pos length, int color);
