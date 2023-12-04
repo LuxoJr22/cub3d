@@ -12,9 +12,9 @@
 
 #include "cub3d.h"
 
-int is_in(char c, char *str)
+int	is_in(char c, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -69,27 +69,26 @@ char	**ft_split(char *str, char sep)
 	return (ret);
 }
 
-
-int ft_atoi(char *str)
+int	ft_atoi(char *str)
 {
-	int i;
-	int nb;
-	
+	int	i;
+	int	nb;
+
 	i = 0;
 	nb = 0;
 	while (str[i] == ' ')
 		i ++;
 	while (str[i] >= '0' && str[i] <= '9')
 		nb = nb * 10 + str[i++] - 48;
-	return(nb);
+	return (nb);
 }
 
-int get_color(char *str)
+int	get_color(char *str)
 {
-	char **array;
-	int	r;
-	int	g;
-	int	b;
+	char	**array;
+	int		r;
+	int		g;
+	int		b;
 
 	array = ft_split(str, ',');
 	r = ft_atoi(array[0]);
@@ -100,7 +99,7 @@ int get_color(char *str)
 
 char	*add_malloc(char *str, char buf)
 {
-	int 	i;
+	int		i;
 	char	*str_ret;
 
 	i = 0;
@@ -121,7 +120,7 @@ char	*add_malloc(char *str, char buf)
 
 char	*reset_str(char *str)
 {
-	char *ret;
+	char	*ret;
 
 	free(str);
 	ret = malloc(sizeof(char));
@@ -131,13 +130,13 @@ char	*reset_str(char *str)
 
 int	*create_map(t_game *game, char *str)
 {
-	int *map;
-	int i;
+	int	*map;
+	int	i;
 	int	nb_ret;
-	int len_max;
-	int len;
-	int offset;
-	int offb;
+	int	len_max;
+	int	len;
+	int	offset;
+	int	offb;
 
 	i = 0;
 	offb = 0;
@@ -145,7 +144,7 @@ int	*create_map(t_game *game, char *str)
 	offset = 0;
 	len_max = 0;
 	nb_ret = 0;
-	while(str[i])
+	while (str[i])
 	{
 		len ++;
 		if (str[i] == '\n')
@@ -160,13 +159,37 @@ int	*create_map(t_game *game, char *str)
 	map = malloc(sizeof(int) * ((nb_ret + 1) * len_max) + 1);
 	i = 0;
 	nb_ret = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == 'N')
 		{
 			game->player->px = (i - offset + offb - nb_ret * len_max) * 64 + 32;
 			game->player->py = ((i - offset + offb) / len_max) * 64 + 32;
 			game->player->pa = P3;
+			game->player->pdx = cos(game->player->pa) * 5;
+			game->player->pdy = sin(game->player->pa) * 5;
+		}
+		if (str[i] == 'S')
+		{
+			game->player->px = (i - offset + offb - nb_ret * len_max) * 64 + 32;
+			game->player->py = ((i - offset + offb) / len_max) * 64 + 32;
+			game->player->pa = P2;
+			game->player->pdx = cos(game->player->pa) * 5;
+			game->player->pdy = sin(game->player->pa) * 5;
+		}
+		if (str[i] == 'E')
+		{
+			game->player->px = (i - offset + offb - nb_ret * len_max) * 64 + 32;
+			game->player->py = ((i - offset + offb) / len_max) * 64 + 32;
+			game->player->pa = 0;
+			game->player->pdx = cos(game->player->pa) * 5;
+			game->player->pdy = sin(game->player->pa) * 5;
+		}
+		if (str[i] == 'W')
+		{
+			game->player->px = (i - offset + offb - nb_ret * len_max) * 64 + 32;
+			game->player->py = ((i - offset + offb) / len_max) * 64 + 32;
+			game->player->pa = PI;
 			game->player->pdx = cos(game->player->pa) * 5;
 			game->player->pdy = sin(game->player->pa) * 5;
 		}
@@ -191,9 +214,8 @@ int	*create_map(t_game *game, char *str)
 	}
 	game->map_h = nb_ret + 1;
 	game->map_w = len_max;
-
 	len = 0;
-	while (len < (game->map_h - 1)* game->map_w)
+	while (len < (game->map_h - 1) * game->map_w)
 		len ++;
 	return (map);
 }

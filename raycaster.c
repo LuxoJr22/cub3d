@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void raycaster2D(t_game *game, float ra)
+void	raycaster2D(t_game *game, float ra)
 {
 	int mp, dof;
 	float rx, ry, xo, yo, aTan, nTan;
@@ -112,10 +112,6 @@ void raycaster2D(t_game *game, float ra)
 	game->raycast.mt.y = vmt;
 }
 
-
-
-
-
 void raycaster3D(t_game *game)
 {
 	int nb_ray;
@@ -200,11 +196,10 @@ void raycaster3D(t_game *game)
 			if (ra < P3 && ra > P2)
 				tx = 31 - tx;
 		}
-		
 		y = 0;
 		while (y < lineH)
 		{
-			float c = game->textures[(int)(ty) * 32 + (int)tx] * shade;
+			float	c = game->textures[(int)(ty) * 32 + (int)tx] * shade;
 			color = get_trgb(0, c * 255, c * 255, c * 255);
 			i = 0;
 			while (i < 2)

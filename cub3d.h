@@ -42,6 +42,12 @@ typedef struct s_p {
 	int y;
 }			t_p;
 
+typedef struct s_rgb {
+	int r;
+	int g;
+	int b;
+}			t_rgb;
+
 typedef struct s_player {
 	float	px;
 	float	py;

@@ -1,18 +1,89 @@
+/*                    DRAW LINE            */
 
-           1111111111111111111111111
-           1000000000110000000000001
-           1011000001110000000000001
-           1001000000000000000000001
-111111111011000001110000000000001
-100000000011000001110111111111111
-11110111111111011100000010001
-11110111111111011101010010001
-11000000110101011100000010001
-10000000000000001100000010001
-10000000000000001101010010001
-11000001110101011111011110N0111
-11110111 1110101 101111010001
-11111111 1111111 111111111111
+
+/*
+#define SGN(_x) ((_x) < 0 ? -1 : ((_x) > 0 ? 1 : 0))
+
+void	draw_line(t_game *game, t_pos p1, t_pos p2, int color)
+{
+	int	x0 = p1.x;
+	int	x1 = p2.x;
+	int	y0 = p1.y;
+	int	y1 = p2.y;
+	int	dx = x1 - x0;
+	int	dy = y1 - y0;
+	int	incX = SGN(dx);
+	int	incY = SGN(dy);
+	int	x;
+	int	y;
+	int	slope;
+	int	error;
+	int	errorInc;
+
+	dx = abs(dx);
+	dy = abs(dy);
+	if (dy == 0)
+	{
+		x = x0;
+		while (x != x1)
+		{
+			my_mlx_pixel_put(&game->frame1, x, y0, color);
+			x += incX;
+		}
+	}
+	else if (dx == 0)
+	{
+		y = y0;
+		while (y != y1 + incY)
+		{
+			my_mlx_pixel_put(&game->frame1, x0, y, color);
+			y += incY;
+		}
+	}
+	else if (dx >= dy)
+	{
+		slope = 2 * dy;
+		error = -dx;
+		errorInc = -2 * dx;
+		y = y0;
+		x = x0;
+		while (x != x1 + incX)
+		{
+			my_mlx_pixel_put(&game->frame1, x, y, color);
+			error += slope;
+			if (error >= 0)
+			{
+				y += incY;
+				error += errorInc;
+			}
+			x += incX;
+		}
+	}
+	else
+	{
+		slope = 2 * dx;
+		error = -dy;
+		errorInc = -2 * dy;
+		x = x0;
+		y = y0;
+		while( y != y1 + incY)
+		{
+			my_mlx_pixel_put(&game->frame1, x, y, color);
+			error += slope;
+			if (error >= 0)
+			{
+				x += incX;
+				error += errorInc;
+			}
+			y += incY;
+		}
+	}
+}
+
+*/
+
+
+/*                  ANCIEN KEYMANAGER            */
 
 /*int key_manager(int keycode, t_game *game)
 {
@@ -56,6 +127,8 @@ int relinput(int keycode, t_game *game)
 	return (1);
 }*/
 
+
+/*				VIEUX RAYCASTER TOUT POURRI            */
 
 	/*int dx, dy, p, x, y;
  

@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int key_manager(int keycode, t_game *game)
+int	key_manager(int keycode, t_game *game)
 {
 	if (keycode == 65363)
 		game->player->cm = 1;
@@ -31,7 +31,7 @@ int key_manager(int keycode, t_game *game)
 	return (1);
 }
 
-int relinput(int keycode, t_game *game)
+int	relinput(int keycode, t_game *game)
 {
 	if (keycode == 65363)
 		game->player->cm = 0;
