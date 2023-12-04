@@ -241,8 +241,10 @@ int main()
  0,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,0,         
 };
 	game->textures = All_Textures;
-	//game->north_xpm = parsing_xpm("assets/test.xpm");
-	//printf("%s\n", game->north_xpm->img_one_chars);
+
+	game->north_xpm = parsing_xpm("assets/test.xpm");
+	printf("%s\n", game->north_xpm->img_one_chars);
+	
 	game->img.img = mlx_new_image(game->mlx, 960, 640);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
 	game->frame1.img = mlx_new_image(game->mlx, 960, 640);

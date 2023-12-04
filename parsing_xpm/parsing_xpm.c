@@ -23,5 +23,7 @@ t_xpm	*parsing_xpm(char *filename)
 	if (xpm->nb_colors)
 		build_colors_chained_list(xpm);
 	get_img_one_chars(xpm);
+	/*
+	*/
 	return (xpm);
 }

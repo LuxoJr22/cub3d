@@ -27,6 +27,22 @@ static void	get_first_color_line_index(t_xpm *xpm)
 	}
 }
 
+void	print_list(t_xpm *xpm)
+{
+	printf("\nNEW PRINT LIST\n");
+	t_colors	*node = xpm->colors;
+	while (node)
+	{
+		printf("node->symbol : %c ; node->color = %s\n", node->symbol, node->color);
+		if (node->next)
+			printf("node->next n'est pas null\n");
+		else
+			printf("node->next est null\n");
+		node = node->next;
+	}
+	printf("END PRINT LIST\n");
+}
+
 void	build_colors_chained_list(t_xpm *xpm)
 {
 	int	i;
@@ -38,6 +54,7 @@ void	build_colors_chained_list(t_xpm *xpm)
 	while (xpm->file_lbl[i] && ++j < xpm->nb_colors)
 	{
 		add_colors_node(xpm, i);
+		//print_list(xpm);
 		i++;
 	}
 	xpm->last_color_line_index = i - 1;
