@@ -4,6 +4,7 @@ SRCS = cub3d.c \
 	   player.c \
 	   raycaster.c \
 	   utils.c \
+	   ft_split.c \
 	   parsing.c \
 	   minimap.c \
 	   parsing_xpm/add_colors_node.c \

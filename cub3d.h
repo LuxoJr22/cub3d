@@ -112,7 +112,7 @@ void	show_map(t_game *game);
 int 	dist(int x1, int y1, int x2, int y2);
 int		relinput(int keycode, t_game *game);
 int		move(t_game *game);
-char	**ft_split(char *str, char sep);
+char	**ft_split(char *s, char sep);
 int 	ft_atoi(char *str);
 
 float check_angle(float a);

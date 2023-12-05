@@ -26,49 +26,6 @@ int	is_in(char c, char *str)
 	return (0);
 }
 
-char	**ft_split(char *str, char sep)
-{
-	int		i;
-	int		start;
-	int		nb_word;
-	int		act_start;
-	char	**ret;
-
-	nb_word = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == sep || str[i + 1] == '\0')
-			nb_word ++;
-		i ++;
-	}
-	ret = malloc(sizeof(char *) * (nb_word + 1));
-	nb_word = 0;
-	i = 0;
-	start = 0;
-	act_start = 0;
-	while (str[i])
-	{
-		if (str[i + 1] == '\0' || str[i] == sep)
-		{
-			if (str[i + 1] == '\0')
-				i ++;
-			ret[nb_word] = malloc(sizeof(char) * (i - start + 1));
-			while (start < i)
-			{
-				ret[nb_word][start - act_start] = str[start];
-				start ++;
-			}
-			ret[nb_word][start - act_start] = '\0';
-			start ++;
-			act_start = start;
-			nb_word ++;
-		}
-		i ++;
-	}
-	return (ret);
-}
-
 int	ft_atoi(char *str)
 {
 	int	i;
