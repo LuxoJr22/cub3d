@@ -28,6 +28,13 @@ int	key_manager(int keycode, t_game *game)
 		game->player->dy += -1;
 	if (keycode == 65289)
 		game->map_active = 1;
+	if (keycode == 65505)
+		game->player->sprint = 1.5;
+	if (keycode == 32 && game->player->is_jump == 0)
+	{
+		game->player->height = 5;
+		game->player->is_jump = 1;
+	}
 	return (1);
 }
 
@@ -47,5 +54,9 @@ int	relinput(int keycode, t_game *game)
 		game->player->dy -= -1;
 	if (keycode == 65289)
 		game->map_active = 0;
+	if (keycode == 65505)
+		game->player->sprint = 1;
+	/*if (keycode == 32)
+		game->player->height = 1;*/
 	return (1);
 }

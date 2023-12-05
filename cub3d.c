@@ -86,6 +86,10 @@ int main()
 	player->pdx = cos(player->pa) * 5;
 	player->pdy = sin(player->pa) * 5;
 	player->cm = 0;
+	player->sprint = 1;
+	player->height = 1;
+	player->actheight = 1;
+	player->is_jump = 0;
 	game->map = map;
 	game->map_active = 0;
 	game->mlx = mlx_init();

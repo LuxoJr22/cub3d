@@ -61,6 +61,10 @@ typedef struct s_player {
 	int cm;
 	float pdy;
 	float pdx;
+	float sprint;
+	float height;
+	float actheight;
+	int		is_jump;
 }				t_player;
 
 typedef struct s_raycaster {

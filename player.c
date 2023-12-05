@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	move_front(t_game *game)
+void	move_back(t_game *game)
 {
 	int	mx;
 	int	my;
@@ -26,7 +26,7 @@ void	move_front(t_game *game)
 	}
 }
 
-void	move_back(t_game *game)
+void	move_front(t_game *game)
 {
 	int	mx;
 	int	my;
@@ -35,8 +35,8 @@ void	move_back(t_game *game)
 	my = (int)(game->player->py + ((game->player->pdy) / 10) * 2) / 64;
 	if (game->map[my * game->map_w + mx] != 1)
 	{
-		game->player->px += ((game->player->pdx) / 5);
-		game->player->py += ((game->player->pdy) / 5);
+		game->player->px += ((game->player->pdx) / 5) * game->player->sprint;
+		game->player->py += ((game->player->pdy) / 5) * game->player->sprint;
 	}
 }
 
@@ -74,20 +74,38 @@ void	move_right(t_game *game)
 	}
 }
 
+void	jump(t_game *game)
+{
+	if (game->player->height == 5)
+		game->player->actheight += 0.05;
+	if (game->player->height == 1)
+		game->player->actheight -= 0.05;
+	if (game->player->actheight >= 5)
+		game->player->height = 1;
+	if (game->player->actheight < 1)
+	{
+		game->player->actheight = 1;
+		game->player->is_jump = 0;
+	}
+	printf("%f, %f\n", game->player->height, game->player->actheight);
+}
+
 int	move(t_game *game)
 {
 	int		mx;
 	int		my;
 	float	pa;
 
+	/*if (game->player->is_jump)
+		jump(game);*/
 	if (game->player->dx == 1)
 		move_left(game);
 	if (game->player->dx == -1)
 		move_right(game);
 	if (game->player->dy == 1)
-		move_front(game);
-	if (game->player->dy == -1)
 		move_back(game);
+	if (game->player->dy == -1)
+		move_front(game);
 	if (game->player->cm == 1)
 	{
 		game->player->pa += 0.02;
