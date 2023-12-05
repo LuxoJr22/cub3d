@@ -1,5 +1,6 @@
 {
 	"files.associations": {
-		"parsing_xpm.h": "c"
+		"parsing_xpm.h": "c",
+		"cub3d.h": "c"
 	}
 }

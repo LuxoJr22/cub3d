@@ -179,7 +179,7 @@ void raycaster3D(t_game *game)
 			ty_off = (lineH - 640) / 2;
 			lineH = 640;
 		}
-		o.y = 320 - lineH / 2;
+		o.y = 320 - lineH / 2 + (game->player->actheight - 1) * 100;
 		int i;
 		int y;
 		float ty = ty_off * ty_step + hmt * 32;
@@ -205,7 +205,8 @@ void raycaster3D(t_game *game)
 			while (i < 2)
 			{
 				o.x = nb_ray * 2 + i;
-				my_mlx_pixel_put(&game->frame1, o.x, o.y + y, effect_color(game, color));
+				if (o.y + y < 640)
+					my_mlx_pixel_put(&game->frame1, o.x, o.y + y, effect_color(game, color));
 				i ++;
 			}
 			ty += ty_step;

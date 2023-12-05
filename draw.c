@@ -24,7 +24,8 @@ void	draw_back(t_game *game, t_pos start, t_pos length, int color)
 	{
 		while (z < length.y)
 		{
-			my_mlx_pixel_put(&game->frame1, start.x + i, start.y + z, color);
+			if (start.y + z < 640)
+				my_mlx_pixel_put(&game->frame1, start.x + i, start.y + z, color);
 			z ++;
 		}
 		i ++;
