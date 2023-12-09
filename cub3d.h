@@ -109,7 +109,7 @@ void	create_img(t_game *game);
 void	get_map(t_game *game, char *name);
 void	draw_player(t_game *game);
 int 	effect_color(t_game *game, int color);
-void	raycaster3D(t_game *game);
+void	display_raycast(t_game *game);
 int		key_manager(int keycode, t_game *game);
 int		get_trgb(int t, int r, int g, int b);
 void	show_map(t_game *game);
