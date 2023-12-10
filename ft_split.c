@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:47:35 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 18:12:51 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:39:00 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-# include <stdint.h>
+#include <stdint.h>
 
 static void	*ft_calloc(size_t count, size_t size)
 {

@@ -41,7 +41,8 @@ int	add_trgb(int color1, int color2)
 	c2.r = color2 >> 16;
 	c2.g = (color2 >> 8) - (c2.r << 8);
 	c2.b = color2 - (c2.g << 8) - (c2.r << 16);
-	return (get_trgb(0, (c1.r + c2.r) / 2, (c1.g + c2.g) / 2, (c1.b + c2.b) / 2));
+	return (get_trgb(0, (c1.r + c2.r) / 2, (c1.g + c2.g) / 2,
+			(c1.b + c2.b) / 2));
 }
 
 int	effect_color(t_game *game, int color)

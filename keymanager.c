@@ -56,7 +56,5 @@ int	relinput(int keycode, t_game *game)
 		game->map_active = 0;
 	if (keycode == 65505)
 		game->player->sprint = 1;
-	/*if (keycode == 32)
-		game->player->height = 1;*/
 	return (1);
 }
