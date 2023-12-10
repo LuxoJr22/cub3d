@@ -7,6 +7,10 @@ SRCS = cub3d.c \
 	   ft_split.c \
 	   parsing.c \
 	   minimap.c \
+	   raycasting.c \
+	   movement.c \
+	   init.c \
+	   draw_mini.c \
 	   parsing_xpm/add_colors_node.c \
 	   parsing_xpm/build_colors_chained_list.c \
 	   parsing_xpm/feed_file_lbl.c \
