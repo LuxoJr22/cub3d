@@ -133,9 +133,9 @@ int	main(void)
 	
 
 
-	game->south_xpm = parsing_xpm("assets/wall.xpm");
+	game->south_xpm = parsing_xpm("assets/tree.xpm");
 	
-	print_parsing_xpm(game->south_xpm, "wall.xpm");
+	print_parsing_xpm(game->south_xpm, "tree.xpm");
 
 	/*
 	game->textures = all_text(game, game->north_xpm);

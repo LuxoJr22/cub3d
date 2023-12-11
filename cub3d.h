@@ -128,6 +128,7 @@ float check_angle(float a);
 
 void	print_parsing_xpm(t_xpm *xpm, char *filename);
 void	print_img_ints(t_xpm *xpm);
+void	print_colors(t_xpm *xpm);
 
 
 #endif

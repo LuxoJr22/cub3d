@@ -19,6 +19,7 @@ void	check_colorsymbol_mode(t_xpm *xpm)
 	colors_node = xpm->colors;
 	while (colors_node)
 	{
+		printf("check_colorsymbol_mode : colors_node->symbol = %s ; colors_node->color = %s\n", colors_node->symbol, colors_node->color);
 		if (ft_strlen(colors_node->symbol) == 2)
 		{
 			xpm->colorsymbol_mode = 2;

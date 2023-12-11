@@ -38,7 +38,7 @@ void	feed_colors_node(t_xpm *xpm, t_colors *colors_node, int i)
 		else
 		{
 			if (ft_strlen(line_splitted[0]) == 1)
-				colors_node->symbol = ft_strdup("  ");
+				colors_node->symbol = ft_strdup(" ");
 			else
 				colors_node->symbol = ft_substr(line_splitted[0], 1, 2);
 			colors_node->color = ft_substr(line_splitted[2], 0, 7);

@@ -25,6 +25,10 @@ t_xpm	*parsing_xpm(char *filename)
 		feed_xpm_width_height_nbcolors(xpm);
 		if (xpm->nb_colors)
 			build_colors_chained_list(xpm);
+		
+		printf("parsing_xpm : print_colors imminent\n");
+		print_colors(xpm);
+
 		check_colorsymbol_mode(xpm);
 		if (xpm->colorsymbol_mode == 2)
 			adjust_colors(xpm);
