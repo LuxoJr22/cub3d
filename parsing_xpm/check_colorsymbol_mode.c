@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   build_colors_chained_list.c                        :+:      :+:    :+:   */
+/*   check_colorsymbol_mode.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:24:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:24:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/12/10 21:57:17 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/12/10 21:57:17 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_xpm.h"
 
-static void	get_first_color_line_index(t_xpm *xpm)
+void	check_colorsymbol_mode(t_xpm *xpm)
 {
-	int	i;
+	t_colors	*colors_node;
 
-	i = xpm->carac_line_index;
-	while (xpm->file_lbl[++i])
+	colors_node = xpm->colors;
+	while (colors_node)
 	{
-		if (xpm->file_lbl[i][0] = '"')
+		if (ft_strlen(colors_node->symbol) == 2)
 		{
-			xpm->first_color_line_index = i;
+			xpm->colorsymbol_mode = 2;
 			return ;
 		}
+		colors_node = colors_node->next;
 	}
-}
-
-void	build_colors_chained_list(t_xpm *xpm)
-{
-	int	i;
-	int	j;
-	
-	get_first_color_line_index(xpm);
-	i = xpm->first_color_line_index;
-	j = -1;
-	while (xpm->file_lbl[i] && ++j < xpm->nb_colors)
-	{
-		add_colors_node(xpm, i);
-		i++;
-	}
-	xpm->last_color_line_index = i - 1;
 }

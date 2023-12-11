@@ -55,31 +55,7 @@ int	scene_manager(t_game *game)
 		game->frame = 0;
 }
 
-int	get_number(char c)
-{
-	int	i;
-
-	if (c >= 'A')
-	{
-		i = c - 'A' + 10;
-	}
-	else
-		i = c - '0';
-	return (i);
-}
-
-int	create_color(char *str)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = get_number(str[1]) * 16 + get_number(str[2]);
-	g = get_number(str[3]) * 16 + get_number(str[4]);
-	b = get_number(str[5]) * 16 + get_number(str[6]);
-	return (get_trgb(0, r, g, b));
-}
-
+/*
 int	*all_text(t_game *game, t_xpm *test)
 {
 	int			*textures;
@@ -122,6 +98,7 @@ int	*all_text(t_game *game, t_xpm *test)
 	}
 	return (textures);
 }
+*/
 
 int	main(void)
 {
@@ -149,10 +126,18 @@ int	main(void)
 	game->player = player;
 	game->bg = mlx_xpm_file_to_image(game->mlx,
 			"assets/black.xpm", &imgw, &imgh);
-	game->north_xpm = parsing_xpm("assets/wall.xpm");
-	game->south_xpm = parsing_xpm("assets/south.xpm");
-	game->east_xpm = parsing_xpm("assets/east.xpm");
-	game->west_xpm = parsing_xpm("assets/west.xpm");
+	// game->north_xpm = parsing_xpm("assets/wall.xpm");
+	// game->south_xpm = parsing_xpm("assets/south.xpm");
+	// game->east_xpm = parsing_xpm("assets/east.xpm");
+	// game->west_xpm = parsing_xpm("assets/west.xpm");
+	
+
+
+	game->south_xpm = parsing_xpm("assets/wall.xpm");
+	
+	print_parsing_xpm(game->south_xpm, "wall.xpm");
+
+	/*
 	game->textures = all_text(game, game->north_xpm);
 	game->img.img = mlx_new_image(game->mlx, 960, 640);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
@@ -169,4 +154,6 @@ int	main(void)
 	mlx_hook(game->mlx_win, 3, (1L << 1), relinput, game);
 	mlx_loop_hook(game->mlx, scene_manager, game);
 	mlx_loop(game->mlx);
+	*/
+	return (EXIT_SUCCESS);
 }

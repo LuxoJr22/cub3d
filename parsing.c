@@ -47,7 +47,7 @@ int	get_color(char *str)
 	int		g;
 	int		b;
 
-	array = ft_split(str, ',');
+	array = ft_split(str, ",");
 	r = ft_atoi(array[0]);
 	g = ft_atoi(array[1]);
 	b = ft_atoi(array[2]);

@@ -7,8 +7,14 @@ SRCS = cub3d.c \
 	   ft_split.c \
 	   parsing.c \
 	   minimap.c \
+	   create_color.c \
+	   print_parsing_xpm.c \
 	   parsing_xpm/add_colors_node.c \
+	   parsing_xpm/adjust_colors.c \
 	   parsing_xpm/build_colors_chained_list.c \
+	   parsing_xpm/build_img_ints.c \
+	   parsing_xpm/check_colorsymbol_mode.c \
+	   parsing_xpm/check_img_rectangular.c \
 	   parsing_xpm/feed_file_lbl.c \
 	   parsing_xpm/feed_xpm_width_height_nbcolors.c \
 	   parsing_xpm/feed_colors_node.c \
@@ -17,6 +23,7 @@ SRCS = cub3d.c \
 	   parsing_xpm/ft_bzero.c \
 	   parsing_xpm/ft_memset.c \
 	   parsing_xpm/ft_substr.c \
+	   parsing_xpm/get_first_img_line_index.c \
 	   parsing_xpm/get_img_one_chars.c \
 	   parsing_xpm/get_nb_lines.c \
 	   parsing_xpm/get_next_line_bonus.c \
@@ -26,6 +33,10 @@ SRCS = cub3d.c \
 	   parsing_xpm/new_colors.c \
 	   parsing_xpm/new_xpm.c \
 	   parsing_xpm/parsing_xpm.c \
+	   parsing_xpm/xpm_strlen.c \
+
+# print_parsing_xpm à supprimer
+
 
 OBJS = ${SRCS:.c=.o}
 

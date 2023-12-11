@@ -25,7 +25,7 @@
 
 char	*get_next_line(int fd);
 char	*cut(char *s, unsigned int start, size_t len);
-char	*ft_strjoin(char *s1, char *s2);
+char	*gnl_strjoin(char *s1, char *s2);
 char	*ft_strdup(char *s);
 char	*ft_strchr(char *str, int searchedChar);
 size_t	slen(char *s);
