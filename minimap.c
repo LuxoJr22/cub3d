@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:16:59 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/08 16:53:58 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/10 23:46:04 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,38 +30,20 @@ void	create_img(t_game *game)
 	{
 		while (m.x < game->map_w)
 		{
-			if ((m.x > p.x - 5 && m.x < p.x + 5) && (m.y > p.y - 5 && m.y < p.y + 5))
+			if ((m.x > p.x - 5 && m.x < p.x + 5)
+				&& (m.y > p.y - 5 && m.y < p.y + 5))
 			{
 				if (game->map[m.y * game->map_w + m.x] == 1)
-					draw_cube(game, (m.x - p.x + 5) * side - d.x, (m.y - p.y + 5) * side - d.y, 0x00FFFFFF);
+					draw_cube(game, (m.x - p.x + 5) * side - d.x,
+						(m.y - p.y + 5) * side - d.y, 0x00FFFFFF);
 				else
-					draw_cube(game, (m.x - p.x + 5) * side - d.x, (m.y - p.y + 5) * side - d.y, 0x00000000);
+					draw_cube(game, (m.x - p.x + 5) * side - d.x,
+						(m.y - p.y + 5) * side - d.y, 0x00000000);
 			}
 			m.x ++;
 		}
 		m.y ++;
 		m.x = 0;
-	}
-}
-
-void	draw_cube(t_game *game, int x, int y, int color)
-{
-	int	side;
-	int	i;
-	int	z;
-
-	i = 0;
-	z = 0;
-	side = 16;
-	while (i < side)
-	{
-		while (z < side)
-		{
-			my_mlx_pixel_put(&game->frame1, x + i, y + z, color);
-			z ++;
-		}
-		i ++;
-		z = 0;
 	}
 }
 
@@ -84,80 +66,12 @@ void	draw_cube_side(t_game *game, int x, int y, int color, int side)
 	}
 }
 
-void	draw_back_mini(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (x < 10)
-	{
-		while (y < 10)
-		{
-			draw_cube(game, x * 16, y * 16, 0x00FFFFFF);
-			y ++;
-		}
-		y = 0;
-		x ++;
-	}
-}
-
-void	draw_border_mini(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	while (x < 10)
-	{
-		while (y < 10)
-		{
-			if (x == 0 || y == 0 || x == 9 || y == 9)
-				draw_cube(game, x * 16, y * 16, 0x00F66B83);
-			y ++;
-		}
-		y = 0;
-		x ++;
-	}
-}
-
-void	draw_player(t_game *game)
-{
-	int		h;
-	int		i;
-	int		y;
-	t_pos	p1;
-	t_pos	p2;
-
-	i = 0;
-	y = 0;
-	h = 8;
-	while (i < h)
-	{
-		while (y < h)
-		{
-			mlx_pixel_put(game->mlx, game->mlx_win, (game->player->px / 4) + i, (game->player->py / 4) + y, 0xFFFFFFFF);
-			y ++;
-		}
-		i ++;
-		y = 0;
-	}
-	/*p1.x = (game->player->px) / 4 + 4;
-	p1.y = (game->player->py) / 4 + 4;
-	p2.x = (game->player->px + (game->player->pdx * 7)) / 4 + 4;
-	p2.y = (game->player->py + (game->player->pdy * 7)) / 4 + 4;
-	draw_line(game, p1, p2, 0xFFFFFFFF);*/
-}
-
 void	draw_minimap(t_game *game)
 {
 	draw_back_mini(game);
 	create_img(game);
 	draw_cube(game, 80, 80, 0x00FFFFFF);
 	draw_border_mini(game);
-	//draw_player(game);
 }
 
 void	show_map(t_game *game)
@@ -183,13 +97,16 @@ void	show_map(t_game *game)
 		while (p.x < game->map_w)
 		{
 			if (game->map[p.y * game->map_w + p.x] == 1)
-				draw_cube_side(game, p.x * side + o.x, p.y * side + o.y, 0x00FFFFFF, side);
+				draw_cube_side(game, p.x * side + o.x,
+					p.y * side + o.y, 0x00FFFFFF, side);
 			else
-				draw_cube_side(game, p.x * side + o.x, p.y * side + o.y, 0x00000000, side);
+				draw_cube_side(game, p.x * side + o.x,
+					p.y * side + o.y, 0x00000000, side);
 			p.x ++;
 		}
 		p.x = 0;
 		p.y ++;
 	}
-	draw_cube_side(game, (game->player->px / 4) + o.x, (game->player->py / 4) + o.y, 0x0000FF00, side);
+	draw_cube_side(game, (game->player->px / 4) + o.x,
+		(game->player->py / 4) + o.y, 0x0000FF00, side);
 }

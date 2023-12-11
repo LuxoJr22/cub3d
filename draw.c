@@ -25,7 +25,29 @@ void	draw_back(t_game *game, t_pos start, t_pos length, int color)
 		while (z < length.y)
 		{
 			if (start.y + z < 640)
-				my_mlx_pixel_put(&game->frame1, start.x + i, start.y + z, color);
+				my_mlx_pixel_put(&game->frame1, start.x + i,
+					start.y + z, color);
+			z ++;
+		}
+		i ++;
+		z = 0;
+	}
+}
+
+void	draw_cube(t_game *game, int x, int y, int color)
+{
+	int	side;
+	int	i;
+	int	z;
+
+	i = 0;
+	z = 0;
+	side = 16;
+	while (i < side)
+	{
+		while (z < side)
+		{
+			my_mlx_pixel_put(&game->frame1, x + i, y + z, color);
 			z ++;
 		}
 		i ++;

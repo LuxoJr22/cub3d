@@ -9,6 +9,10 @@ SRCS = cub3d.c \
 	   minimap.c \
 	   create_color.c \
 	   print_parsing_xpm.c \
+	   raycasting.c \
+	   movement.c \
+	   init.c \
+	   draw_mini.c \
 	   parsing_xpm/add_colors_node.c \
 	   parsing_xpm/adjust_colors.c \
 	   parsing_xpm/build_colors_chained_list.c \
