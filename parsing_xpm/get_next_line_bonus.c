@@ -54,7 +54,7 @@ static char	*read_fd(char *proto, int fd)
 		}
 		buffer[nb_read_bytes] = '\0';
 		if (proto)
-			proto = ft_strjoin(proto, buffer);
+			proto = gnl_strjoin(proto, buffer);
 		else
 			proto = ft_strdup(buffer);
 	}

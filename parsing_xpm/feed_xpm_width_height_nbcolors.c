@@ -44,7 +44,7 @@ void	feed_xpm_width_height_nbcolors(t_xpm *xpm)
 	
 	get_carac_line(xpm);
 	get_chr_between_dquotes(xpm);
-	caracs = ft_split(xpm->carac_line, ' ');
+	caracs = ft_split(xpm->carac_line, " ");
 	if (get_size_ntcharss(caracs) >= 3)
 	{
 		xpm->width = ft_atoi(caracs[0]);

@@ -26,10 +26,13 @@ void	feed_file_lbl(t_xpm *xpm)
 		i = -1;
 		while (line)
 		{
+			//printf("line = %s", line); // à supprimer
 			xpm->file_lbl[++i] = ft_strdup(line);
 			free_chars(&line);
 			line = get_next_line(fd);
 		}
-		free_chars(&(xpm->file_lbl[i]));
+		xpm->file_lbl[++i] = ft_strdup(line);
+		free_chars(&line);
+		close(fd);
 	}
 }

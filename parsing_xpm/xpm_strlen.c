@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add_colors_node.c                                  :+:      :+:    :+:   */
+/*   xpm_strlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:23:50 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:23:50 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/12/10 23:37:19 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/12/10 23:37:19 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing_xpm.h"
 
-void	add_colors_node(t_xpm *xpm, int i)
+int	xpm_strlen(char *xpm_line)
 {
-	t_colors	*colors_node;
-	t_colors	*last;
-	
-	if (i == xpm->first_color_line_index)
-		feed_colors_node(xpm, xpm->colors, i);
-	else if (i > xpm->first_color_line_index)
+	int	len;
+
+	len = 1;
+	while (xpm_line[len])
 	{
-		colors_node = new_colors();
-		feed_colors_node(xpm, colors_node, i);
-		last = xpm->colors;
-		while (last->next)
-			last = last->next;
-		last->next = NULL;
-		last->next = colors_node;
-		last->next->next = NULL;
+		if (xpm_line[len] != '"')
+			len++;
+		else
+			break ;
 	}
+	return (len - 1);
 }

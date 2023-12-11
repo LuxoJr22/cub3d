@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_xpm.c                                          :+:      :+:    :+:   */
+/*   create_color.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:03:54 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:03:54 by nstoutze         ###   ########.fr       */
+/*   Created: 2023/12/10 17:13:33 by nstoutze          #+#    #+#             */
+/*   Updated: 2023/12/10 17:13:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing_xpm.h"
+#include "cub3d.h"
 
-t_xpm	*new_xpm(char *filename)
+static int	get_number(char c)
 {
-	t_xpm	*new;
+	int	i;
 
-	new = (t_xpm *)malloc(sizeof(t_xpm));
-	if (!new)
-		return (NULL);
-	new->file_lbl = NULL;
-	new->filename = ft_strdup(filename);
-	new->valid = FALSE;
-	new->carac_line = NULL;
-	new->colors = NULL;
-	new->img_one_chars = NULL;
-	new->img_ints = NULL;
-	new->colorsymbol_mode = 1;
-	new->rectangular = TRUE;
-	return (new);
+	if (c >= 'A')
+		i = c - 'A' + 10;
+	else
+		i = c - '0';
+	return (i);
+}
+
+int	create_color(char *str)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = get_number(str[1]) * 16 + get_number(str[2]);
+	g = get_number(str[3]) * 16 + get_number(str[4]);
+	b = get_number(str[5]) * 16 + get_number(str[6]);
+	return (get_trgb(0, r, g, b));
 }

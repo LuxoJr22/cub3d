@@ -111,7 +111,14 @@ typedef struct s_game
 	t_xpm		*east_xpm;
 	t_xpm		*south_xpm;
 	t_xpm		*west_xpm;
+	t_xpm		*tree_xpm;
 }				t_game;
+
+char    **ft_split(char *str, char *charset);
+int 	ft_atoi(char *str);
+int		create_color(char *str);
+int		ft_strlen(char *str);
+char	*ft_strjoin(char *s1, char *s2);
 
 void		draw_back(t_game *game, t_pos start, t_pos length, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -132,7 +139,6 @@ void		show_map(t_game *game);
 int			dist(int x1, int y1, int x2, int y2);
 int			relinput(int keycode, t_game *game);
 int			move(t_game *game);
-char		**ft_split(char *s, char sep);
 void		move_back(t_game *game);
 void		move_front(t_game *game);
 void		move_left(t_game *game);
@@ -146,5 +152,10 @@ float		check_angle(float a);
 void		draw_back_mini(t_game *game);
 void		draw_border_mini(t_game *game);
 void		draw_player(t_game *game);
+
+void	print_parsing_xpm(t_xpm *xpm, char *filename);
+void	print_img_ints(t_xpm *xpm);
+void	print_colors(t_xpm *xpm);
+
 
 #endif

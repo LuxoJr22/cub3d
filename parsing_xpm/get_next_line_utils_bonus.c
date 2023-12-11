@@ -64,7 +64,7 @@ char	*ft_strdup(char *s)
 	return (str);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*gnl_strjoin(char *s1, char *s2)
 {
 	char	*join;
 	size_t	i;

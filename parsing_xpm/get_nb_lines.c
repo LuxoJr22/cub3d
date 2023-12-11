@@ -20,6 +20,11 @@ void	get_nb_lines(t_xpm *xpm)
 	
 	nb_lines = 0;
 	fd = open(xpm->filename, O_RDONLY);
+	if (fd == -1)
+	{
+		xpm->valid = FALSE;
+		return ;
+	}
 	line = get_next_line(fd);
 	while (line)
 	{

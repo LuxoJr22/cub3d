@@ -143,4 +143,6 @@ int	main(void)
 	mlx_hook(game->mlx_win, 3, (1L << 1), relinput, game);
 	mlx_loop_hook(game->mlx, scene_manager, game);
 	mlx_loop(game->mlx);
+	
+	return (EXIT_SUCCESS);
 }
