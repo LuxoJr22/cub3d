@@ -12,22 +12,7 @@
 
 #include "cub3d.h"
 
-void	raycast(t_game *game, float ra)
-{
-	int		mp;
-	int		dof;
-	t_pos	r;
-	t_pos	o;
-
-	game->raycast.mt.y = 0;
-	game->raycast.mt.x = 0;
-	game->raycast.dis.x = 1000000;
-	game->raycast.dis.y = 1000000;
-	cast_horizontal_line(game, ra, -1 / tan(ra));
-	cast_vertical_line(game, ra, -tan(ra));
-}
-
-void	display_wall(t_game *game, int nb_ray, float lineH, t_pos t, float ty_step)
+void	display_wall(t_game *game, int nb_ray, t_pos l, t_pos t)
 {
 	t_pos	o;
 	int		y;
@@ -35,18 +20,19 @@ void	display_wall(t_game *game, int nb_ray, float lineH, t_pos t, float ty_step)
 
 	y = 0;
 	o.x = game->player->px + 5;
-	o.y = 320 - lineH / 2 + (game->player->actheight - 1) * 100;
-	while (y < lineH)
+	o.y = 320 - l.x / 2 + (game->player->actheight - 1) * 100;
+	while (y < l.x)
 	{
 		i = 0;
 		while (i < 2)
 		{
 			o.x = nb_ray * 2 + i;
 			if (o.y + y < 640)
-				my_mlx_pixel_put(&game->frame1, o.x, o.y + y, effect_color(game, game->textures[(int)t.y * 32 + (int)t.x]));
+				my_mlx_pixel_put(&game->frame1, o.x, o.y + y, effect_color(game,
+						game->textures[(int)t.y * 32 + (int)t.x]));
 			i ++;
 		}
-		t.y += ty_step;
+		t.y += l.y;
 		y ++;
 	}
 }
@@ -70,57 +56,72 @@ t_pos	get_direction_text(t_game *game, t_pos a, float ra)
 	return (t);
 }
 
+void	height_wall(t_game *game, float ra, int nb_ray, t_dist dis)
+{
+	t_pos	t;
+	t_pos	l;
+	float	lineh;
+	float	ty_step;
+	float	ty_off;
+
+	t = get_direction_text(game, dis.a, ra);
+	dis.dist = dis.dist * cos(check_angle(game->player->pa - ra));
+	lineh = (64 * 640) / dis.dist;
+	ty_step = 32.0 / (float)lineh;
+	ty_off = 0;
+	if (lineh > 640)
+	{
+		ty_off = (lineh - 640) / 2;
+		lineh = 640;
+	}
+	t.y = ty_off * ty_step + dis.hmt * 32;
+	l.x = lineh;
+	l.y = ty_step;
+	display_wall(game, nb_ray, l, t);
+}
+
+t_dist	get_dist(t_game *game, float ra, int nb_ray, t_dist dis)
+{
+	if (game->raycast.dis.x < game->raycast.dis.y)
+	{
+		dis.a.x = game->raycast.hc.x;
+		dis.a.y = game->raycast.hc.y;
+		dis.dist = game->raycast.dis.x;
+		dis.hmt = 1;
+		if (ra > PI)
+			dis.hmt = 2;
+	}
+	else if (game->raycast.dis.y < game->raycast.dis.x || nb_ray < 1)
+	{
+		dis.a.x = game->raycast.vc.x;
+		dis.a.y = game->raycast.vc.y;
+		dis.dist = game->raycast.dis.y;
+		dis.hmt = 0;
+		if (ra > P2 && ra < P3)
+			dis.hmt = 3;
+	}
+	else
+	{
+		dis.a.x = game->raycast.vc.x;
+		dis.a.y = game->raycast.vc.y;
+		dis.dist = game->raycast.dis.y;
+	}
+	return (dis);
+}
+
 void	display_raycast(t_game *game)
 {
 	int		nb_ray;
 	float	ra;
-	float	ty_off;
-	float	ty_step;
-	float	lineh;
 	t_dist	dis;
-	t_pos	t;
 
 	ra = check_angle(game->player->pa - DR * 30);
 	nb_ray = 0;
 	while (nb_ray < 480)
 	{
 		raycast(game, ra);
-		if (game->raycast.dis.x < game->raycast.dis.y)
-		{
-			dis.a.x = game->raycast.hc.x;
-			dis.a.y = game->raycast.hc.y;
-			dis.dist = game->raycast.dis.x;
-			dis.hmt = 1;
-			if (ra > PI)
-				dis.hmt = 2;
-		}
-		else if (game->raycast.dis.y < game->raycast.dis.x || nb_ray < 1)
-		{
-			dis.a.x = game->raycast.vc.x;
-			dis.a.y = game->raycast.vc.y;
-			dis.dist = game->raycast.dis.y;
-			dis.hmt = 0;
-			if (ra > P2 && ra < P3)
-				dis.hmt = 3;
-		}
-		else
-		{
-			dis.a.x = game->raycast.vc.x;
-			dis.a.y = game->raycast.vc.y;
-			dis.dist = game->raycast.dis.y;
-		}
-		t = get_direction_text(game, dis.a, ra);
-		dis.dist = dis.dist * cos(check_angle(game->player->pa - ra));
-		lineh = (64 * 640) / dis.dist;
-		ty_step = 32.0 / (float)lineh;
-		ty_off = 0;
-		if (lineh > 640)
-		{
-			ty_off = (lineh - 640) / 2;
-			lineh = 640;
-		}
-		t.y = ty_off * ty_step + dis.hmt * 32;
-		display_wall(game, nb_ray, lineh, t, ty_step);
+		dis = get_dist(game, ra, nb_ray, dis);
+		height_wall(game, ra, nb_ray, dis);
 		ra = check_angle(ra + DR / 8);
 		nb_ray ++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_img_ints.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:47:53 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/10 17:47:53 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:31:59 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void	build_img_ints(t_xpm *xpm)
 {
 	char	*clear_symbols_line;
 	
-	printf("build_img_ints : ENTREE\n");
-	printf("build_img_ints : xpm->first_img_line_index = %d\n", xpm->first_img_line_index);
-	printf("build_img_ints : xpm->file_lbl[xpm->first_img_line_index] = %s", xpm->file_lbl[xpm->first_img_line_index]);
-	printf("build_img_ints : xpm->colorsymbol_mode = %d\n", xpm->colorsymbol_mode);
+	//printf("build_img_ints : ENTREE\n");
+	//printf("build_img_ints : xpm->first_img_line_index = %d\n", xpm->first_img_line_index);
+	//printf("build_img_ints : xpm->file_lbl[xpm->first_img_line_index] = %s", xpm->file_lbl[xpm->first_img_line_index]);
+	//printf("build_img_ints : xpm->colorsymbol_mode = %d\n", xpm->colorsymbol_mode);
 	
 	int	i;
 	int	j;

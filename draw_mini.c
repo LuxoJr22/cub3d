@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 23:45:10 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/10 23:46:08 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/11 18:27:58 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,32 @@ void	draw_player(t_game *game)
 		}
 		i ++;
 		y = 0;
+	}
+}
+
+void	draw_img(t_game *game, t_p d, t_p p, int side)
+{
+	t_p	m;
+
+	m.x = 0;
+	m.y = 0;
+	while (m.y < game->map_h)
+	{
+		while (m.x < game->map_w)
+		{
+			if ((m.x > p.x - 5 && m.x < p.x + 5)
+				&& (m.y > p.y - 5 && m.y < p.y + 5))
+			{
+				if (game->map[m.y * game->map_w + m.x] == 1)
+					draw_cube(game, (m.x - p.x + 5) * side - d.x,
+						(m.y - p.y + 5) * side - d.y, 0x00FFFFFF);
+				else
+					draw_cube(game, (m.x - p.x + 5) * side - d.x,
+						(m.y - p.y + 5) * side - d.y, 0x00000000);
+			}
+			m.x ++;
+		}
+		m.y ++;
+		m.x = 0;
 	}
 }

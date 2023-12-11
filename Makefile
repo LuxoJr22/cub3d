@@ -13,6 +13,8 @@ SRCS = cub3d.c \
 	   movement.c \
 	   init.c \
 	   draw_mini.c \
+	   scene_manager.c \
+	   utils_parsing.c \
 	   parsing_xpm/add_colors_node.c \
 	   parsing_xpm/adjust_colors.c \
 	   parsing_xpm/build_colors_chained_list.c \

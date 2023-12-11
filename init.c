@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:59:44 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/10 23:18:45 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/11 21:22:35 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ t_game	*init_game(t_player *player)
 	get_map(game, "map.cub");
 	game->frame = 0;
 	return (game);
+}
+
+void	set_player_pos(t_game *game, int offx, int offy, char c)
+{
+	game->player->px = offx * 64 + 32;
+	game->player->py = offy * 64 + 32;
+	game->player->pdx = cos(game->player->pa) * 5;
+	game->player->pdy = sin(game->player->pa) * 5;
+	if (c == 'N')
+		game->player->pa = P3;
+	if (c == 'S')
+		game->player->pa = P2;
+	if (c == 'E')
+		game->player->pa = 0;
+	if (c == 'W')
+		game->player->pa = PI;
 }

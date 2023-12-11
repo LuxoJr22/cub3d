@@ -22,8 +22,8 @@
 # include "parsing_xpm/parsing_xpm.h"
 
 # define PI 3.1415926535
-# define P2 PI / 2
-# define P3 3 * PI / 2
+# define P2 1.5707963267
+# define P3 4.7123889804
 # define DR 0.0174533
 
 typedef struct s_xpm	t_xpm;
@@ -114,12 +114,11 @@ typedef struct s_game
 	t_xpm		*tree_xpm;
 }				t_game;
 
-char    **ft_split(char *str, char *charset);
-int 	ft_atoi(char *str);
-int		create_color(char *str);
-int		ft_strlen(char *str);
-char	*ft_strjoin(char *s1, char *s2);
-
+char		**ft_split(char *str, char *charset);
+int			ft_atoi(char *str);
+int			create_color(char *str);
+int			ft_strlen(char *str);
+char		*ft_strjoin(char *s1, char *s2);
 void		draw_back(t_game *game, t_pos start, t_pos length, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		draw_line(t_game *game, t_pos p1, t_pos p2, int color);
@@ -152,10 +151,18 @@ float		check_angle(float a);
 void		draw_back_mini(t_game *game);
 void		draw_border_mini(t_game *game);
 void		draw_player(t_game *game);
-
-void	print_parsing_xpm(t_xpm *xpm, char *filename);
-void	print_img_ints(t_xpm *xpm);
-void	print_colors(t_xpm *xpm);
-
+void		print_parsing_xpm(t_xpm *xpm, char *filename);
+void		print_img_ints(t_xpm *xpm);
+void		print_colors(t_xpm *xpm);
+int			scene_manager(t_game *game);
+void		draw_img(t_game *game, t_p d, t_p p, int side);
+void		raycast(t_game *game, float ra);
+int			get_character(t_game *game, char buf[2], char *str, int fd);
+char		*add_malloc(char *str, char buf);
+int			get_color(char *str);
+void		set_player_pos(t_game *game, int offx, int offy, char c);
+void		get_map(t_game *game, char *name);
+char		*reset_str(char *str);
+void		create_map(t_game *game, char *str);
 
 #endif
