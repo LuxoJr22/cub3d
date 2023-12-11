@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adjust_colors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 11:19:12 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/11 11:19:12 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:31:58 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	adjust_colors(t_xpm *xpm)
 {
-	printf("adjust_colors : ENTREE\n");
+	//printf("adjust_colors : ENTREE\n");
 
 	t_colors	*colors_node;
 	char		*temp;

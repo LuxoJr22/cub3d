@@ -17,40 +17,18 @@ int	dist(int x1, int y1, int x2, int y2)
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }
 
-int	get_trgb(int t, int r, int g, int b)
+int	ft_atoi(char *str)
 {
-	if (t > 255)
-		t = 255;
-	if (r > 255)
-		r = 255;
-	if (g > 255)
-		g = 255;
-	if (b > 255)
-		b = 255;
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+	int	i;
+	int	nb;
 
-int	add_trgb(int color1, int color2)
-{
-	t_rgb	c1;
-	t_rgb	c2;
-
-	c1.r = color1 >> 16;
-	c1.g = (color1 >> 8) - (c1.r << 8);
-	c1.b = color1 - (c1.g << 8) - (c1.r << 16);
-	c2.r = color2 >> 16;
-	c2.g = (color2 >> 8) - (c2.r << 8);
-	c2.b = color2 - (c2.g << 8) - (c2.r << 16);
-	return (get_trgb(0, (c1.r + c2.r) / 2, (c1.g + c2.g) / 2,
-			(c1.b + c2.b) / 2));
-}
-
-int	effect_color(t_game *game, int color)
-{
-	if (game->map_active)
-		return (add_trgb(color, 0x00000000));
-	else
-		return (color);
+	i = 0;
+	nb = 0;
+	while (str[i] == ' ')
+		i ++;
+	while (str[i] >= '0' && str[i] <= '9')
+		nb = nb * 10 + str[i++] - 48;
+	return (nb);
 }
 
 float	check_angle(float a)

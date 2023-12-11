@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:16:59 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/10 23:46:04 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/11 18:27:45 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,10 @@ void	create_img(t_game *game)
 	p.y = (game->player->py / 64);
 	d.x = (game->player->px - (p.x * 64)) / 4;
 	d.y = (game->player->py - (p.y * 64)) / 4;
-	while (m.y < game->map_h)
-	{
-		while (m.x < game->map_w)
-		{
-			if ((m.x > p.x - 5 && m.x < p.x + 5)
-				&& (m.y > p.y - 5 && m.y < p.y + 5))
-			{
-				if (game->map[m.y * game->map_w + m.x] == 1)
-					draw_cube(game, (m.x - p.x + 5) * side - d.x,
-						(m.y - p.y + 5) * side - d.y, 0x00FFFFFF);
-				else
-					draw_cube(game, (m.x - p.x + 5) * side - d.x,
-						(m.y - p.y + 5) * side - d.y, 0x00000000);
-			}
-			m.x ++;
-		}
-		m.y ++;
-		m.x = 0;
-	}
+	draw_img(game, d, p, side);
 }
 
-void	draw_cube_side(t_game *game, int x, int y, int color, int side)
+void	draw_cube_side(t_game *game, t_p pos, int color, int side)
 {
 	int	i;
 	int	z;
@@ -58,7 +40,7 @@ void	draw_cube_side(t_game *game, int x, int y, int color, int side)
 	{
 		while (z < side)
 		{
-			my_mlx_pixel_put(&game->frame1, x + i, y + z, color);
+			my_mlx_pixel_put(&game->frame1, pos.x + i, pos.y + z, color);
 			z ++;
 		}
 		i ++;
@@ -72,6 +54,27 @@ void	draw_minimap(t_game *game)
 	create_img(game);
 	draw_cube(game, 80, 80, 0x00FFFFFF);
 	draw_border_mini(game);
+}
+
+void	draw_map(t_game *game, t_p p, t_p o, int side)
+{
+	t_p	pos;
+
+	while (p.y < game->map_h)
+	{
+		while (p.x < game->map_w)
+		{
+			pos.x = p.x * side + o.x;
+			pos.y = p.y * side + o.y;
+			if (game->map[p.y * game->map_w + p.x] == 1)
+				draw_cube_side(game, pos, 0x00FFFFFF, side);
+			else
+				draw_cube_side(game, pos, 0x00000000, side);
+			p.x ++;
+		}
+		p.x = 0;
+		p.y ++;
+	}
 }
 
 void	show_map(t_game *game)
@@ -92,21 +95,8 @@ void	show_map(t_game *game)
 	o.y = (640 - side * game->map_h) / 2 ;
 	p.x = 0;
 	p.y = 0;
-	while (p.y < game->map_h)
-	{
-		while (p.x < game->map_w)
-		{
-			if (game->map[p.y * game->map_w + p.x] == 1)
-				draw_cube_side(game, p.x * side + o.x,
-					p.y * side + o.y, 0x00FFFFFF, side);
-			else
-				draw_cube_side(game, p.x * side + o.x,
-					p.y * side + o.y, 0x00000000, side);
-			p.x ++;
-		}
-		p.x = 0;
-		p.y ++;
-	}
-	draw_cube_side(game, (game->player->px / 4) + o.x,
-		(game->player->py / 4) + o.y, 0x0000FF00, side);
+	draw_map(game, p, o, side);
+	p.x = (game->player->px / 4) + o.x;
+	p.y = (game->player->py / 4) + o.y;
+	draw_cube_side(game, p, 0x0000FF00, side);
 }

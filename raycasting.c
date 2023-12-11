@@ -6,11 +6,26 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:34:56 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/10 23:15:09 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/11 20:39:07 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	raycast(t_game *game, float ra)
+{
+	int		mp;
+	int		dof;
+	t_pos	r;
+	t_pos	o;
+
+	game->raycast.mt.y = 0;
+	game->raycast.mt.x = 0;
+	game->raycast.dis.x = 1000000;
+	game->raycast.dis.y = 1000000;
+	cast_horizontal_line(game, ra, -1 / tan(ra));
+	cast_vertical_line(game, ra, -tan(ra));
+}
 
 t_pos	cast_vert_line(t_game *game, float ra, float Tan, t_pos o)
 {

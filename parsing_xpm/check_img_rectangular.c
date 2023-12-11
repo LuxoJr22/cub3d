@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_img_rectangular.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 22:34:13 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/10 22:34:13 by nstoutze         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:31:57 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_img_rectangular(t_xpm *xpm)
 {
-	printf("check_img_rectangular : xpm->len_first_img_line = %d\n", xpm->len_first_img_line);
+	//printf("check_img_rectangular : xpm->len_first_img_line = %d\n", xpm->len_first_img_line);
 	int	i;
 
 	i = xpm->first_img_line_index;

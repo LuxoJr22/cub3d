@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:58:35 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 17:06:00 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:32:54 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_xpm	*parsing_xpm(char *filename)
 {
-	printf("parsing_xpm : ENTREE ; filename = %s\n", filename);
+	//printf("parsing_xpm : ENTREE ; filename = %s\n", filename);
 	t_xpm	*xpm;
 
 	xpm = new_xpm(filename);
@@ -26,8 +26,8 @@ t_xpm	*parsing_xpm(char *filename)
 		if (xpm->nb_colors)
 			build_colors_chained_list(xpm);
 		
-		printf("parsing_xpm : print_colors imminent\n");
-		print_colors(xpm);
+		//printf("parsing_xpm : print_colors imminent\n");
+		//print_colors(xpm);
 
 		check_colorsymbol_mode(xpm);
 		if (xpm->colorsymbol_mode == 2)
