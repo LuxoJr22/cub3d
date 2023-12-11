@@ -47,5 +47,5 @@ void	print_parsing_xpm(t_xpm *xpm, char *filename)
 	print_colors(xpm);
 	print_img_ints(xpm);
 	printf("===== FIN     PRINT_PARSING_XPM     FIN =====\n\n");
-	free(xpm->img_ints); // A SUPPRIMER !!!!!!!!!!!!!
+	//free(xpm->img_ints); // A SUPPRIMER !!!!!!!!!!!!!
 }

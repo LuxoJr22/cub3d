@@ -126,18 +126,10 @@ int	main(void)
 	game->player = player;
 	game->bg = mlx_xpm_file_to_image(game->mlx,
 			"assets/black.xpm", &imgw, &imgh);
-	// game->north_xpm = parsing_xpm("assets/wall.xpm");
-	// game->south_xpm = parsing_xpm("assets/south.xpm");
-	// game->east_xpm = parsing_xpm("assets/east.xpm");
-	// game->west_xpm = parsing_xpm("assets/west.xpm");
-	
-
-
-	game->south_xpm = parsing_xpm("assets/tree.xpm");
-	
-	print_parsing_xpm(game->south_xpm, "tree.xpm");
-
-	/*
+	game->north_xpm = parsing_xpm("assets/wall.xpm");
+	game->south_xpm = parsing_xpm("assets/south.xpm");
+	game->east_xpm = parsing_xpm("assets/east.xpm");
+	game->west_xpm = parsing_xpm("assets/west.xpm");
 	game->textures = all_text(game, game->north_xpm);
 	game->img.img = mlx_new_image(game->mlx, 960, 640);
 	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits_per_pixel, &game->img.line_length, &game->img.endian);
@@ -154,6 +146,6 @@ int	main(void)
 	mlx_hook(game->mlx_win, 3, (1L << 1), relinput, game);
 	mlx_loop_hook(game->mlx, scene_manager, game);
 	mlx_loop(game->mlx);
-	*/
+	
 	return (EXIT_SUCCESS);
 }
