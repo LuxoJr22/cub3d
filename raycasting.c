@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:34:56 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/11 20:39:07 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/27 11:57:32 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	raycast(t_game *game, float ra)
 	t_pos	r;
 	t_pos	o;
 
-	game->raycast.mt.y = 0;
 	game->raycast.mt.x = 0;
+	game->raycast.mt.y = 0;
 	game->raycast.dis.x = 1000000;
 	game->raycast.dis.y = 1000000;
 	cast_horizontal_line(game, ra, -1 / tan(ra));
@@ -62,7 +62,7 @@ void	cast_vertical_line(t_game *game, float ra, float Tan)
 	{
 		mp = (int)game->raycast.vc.y / 64 * game->map_w
 			+ (int)game->raycast.vc.x / 64;
-		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] == 1)
+		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] != 0)
 		{
 			game->raycast.mt.y = game->map[mp] - 1;
 			game->raycast.dis.y = dist(game->player->px, game->player->py,
@@ -113,7 +113,7 @@ void	cast_horizontal_line(t_game *game, float ra, float Tan)
 	{
 		mp = (int)game->raycast.hc.y / 64 * game->map_w
 			+ (int)game->raycast.hc.x / 64;
-		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] == 1)
+		if (mp > 0 && mp < (game->map_w * game->map_h) && game->map[mp] != 0)
 		{
 			game->raycast.mt.x = game->map[mp] - 1;
 			game->raycast.dis.x = dist(game->player->px, game->player->py,

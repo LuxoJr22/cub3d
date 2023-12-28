@@ -12,8 +12,21 @@
 
 #include "cub3d.h"
 
+void	open_door(t_game *game, int keycode)
+{
+	int	mx;
+	int	my;
+
+	mx = (int)(game->player->px + ((game->player->pdx) / 10) * 2) / 64;
+	my = (int)(game->player->py + ((game->player->pdy) / 10) * 2) / 64;
+	if (game->map[my * game->map_w + mx] == ('D') && keycode == 101)
+		game->map[my * game->map_w + mx] = 0;
+}
+
 int	key_manager(int keycode, t_game *game)
 {
+	/*if (keycode == 65307)
+		exit(1);*/
 	if (keycode == 65363)
 		game->player->cm = 1;
 	if (keycode == 65361)
@@ -35,6 +48,14 @@ int	key_manager(int keycode, t_game *game)
 		game->player->height = 5;
 		game->player->is_jump = 1;
 	}
+	open_door(game, keycode);
+	return (1);
+}
+
+int	mouse_manager(int x, int y, t_game *game)
+{
+	game->mouse.act_pos.x = x;
+	game->mouse.act_pos.y = y;
 	return (1);
 }
 

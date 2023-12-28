@@ -75,8 +75,10 @@ t_p	fill_map(t_game *game, char *str, int i, t_p index)
 	{
 		if (str[i] == ' ')
 			game->map[i - index.x] = 1;
-		else
+		if (str[i] == '0' || str[i] == '1')
 			game->map[i - index.x] = str[i] - 48;
+		if (str[i] == 'D')
+			game->map[i - index.x] = str[i];
 	}
 	else if (str[i] == '\n')
 	{
