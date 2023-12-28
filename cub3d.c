@@ -46,15 +46,16 @@ int	*all_text(t_game *game)
 	int		*tab;
 	t_xpm	**text;
 
-	text = malloc(sizeof(t_xpm) * 4);
+	text = malloc(sizeof(t_xpm) * 5);
 	text[0] = game->north_xpm;
 	text[1] = game->west_xpm;
 	text[2] = game->south_xpm;
 	text[3] = game->east_xpm;
-	tab = malloc(sizeof(int) * 4097);
+	text[4] = parsing_xpm("assets/door.xpm");
+	tab = malloc(sizeof(int) * 5120);
 	x = 0;
 	y = 0;
-	while (x < 4)
+	while (x < 5)
 	{
 		while (y < 1024)
 		{
@@ -64,7 +65,15 @@ int	*all_text(t_game *game)
 		y = 0;
 		x ++;
 	}
+	free (text);
 	return (tab);
+}
+
+int	leave(t_game *game)
+{
+	game->mouse.pos.x = 0;
+	game->mouse.act_pos.x = 0;
+	game->player->cm = 0;
 }
 
 int	main(void)
@@ -77,14 +86,16 @@ int	main(void)
 
 	player = init_player();
 	game = init_game(player);
-	game->north_xpm = parsing_xpm("assets/tree.xpm");
-	game->south_xpm = parsing_xpm("assets/south.xpm");
-	game->east_xpm = parsing_xpm("assets/east.xpm");
-	game->west_xpm = parsing_xpm("assets/west.xpm");
-	game->textures = all_text(game);
+	init_sprites(game);
+	game->mouse.pos.x = 0;
+	game->mouse.pos.y = 0;
+	game->mouse.act_pos.x = 0;
+	game->mouse.act_pos.y = 0;
 	mlx_hook(game->mlx_win, 17, (1L << 0), exit_game, params);
 	mlx_hook(game->mlx_win, 2, (1L << 0), key_manager, game);
 	mlx_hook(game->mlx_win, 3, (1L << 1), relinput, game);
+	mlx_hook(game->mlx_win, 6, (1L << 6), mouse_manager, game);
+	mlx_hook(game->mlx_win, 8, (1L << 5), leave, game);
 	mlx_loop_hook(game->mlx, scene_manager, game);
 	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);

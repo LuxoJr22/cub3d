@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:59:44 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/11 21:22:35 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/28 13:15:54 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_player	*init_player(void)
 	player->height = 1;
 	player->actheight = 1;
 	player->is_jump = 0;
+	player->coin = 0;
 	return (player);
 }
 
@@ -57,12 +58,29 @@ t_game	*init_game(t_player *player)
 	return (game);
 }
 
+void	init_sprites(t_game *game)
+{
+	t_pos	pos;
+
+	game->north_xpm = parsing_xpm("assets/tree.xpm");
+	game->south_xpm = parsing_xpm("assets/south.xpm");
+	game->east_xpm = parsing_xpm("assets/east.xpm");
+	game->west_xpm = parsing_xpm("assets/west.xpm");
+	game->textures = all_text(game);
+	game->sprite.pos.x = 25 * 64 + 32;
+	game->sprite.pos.y = 3 * 64 + 32;
+	game->sprite.pos.z = 20;
+	game->sprite.active = 1;
+	pos.x = game->sprite.pos.x;
+	pos.y = game->sprite.pos.y;
+	game->sprite.col = init_col(pos, 10);
+	game->anim = get_anims(game, "assets/penny/", 5);
+}
+
 void	set_player_pos(t_game *game, int offx, int offy, char c)
 {
 	game->player->px = offx * 64 + 32;
 	game->player->py = offy * 64 + 32;
-	game->player->pdx = cos(game->player->pa) * 5;
-	game->player->pdy = sin(game->player->pa) * 5;
 	if (c == 'N')
 		game->player->pa = P3;
 	if (c == 'S')
@@ -71,4 +89,6 @@ void	set_player_pos(t_game *game, int offx, int offy, char c)
 		game->player->pa = 0;
 	if (c == 'W')
 		game->player->pa = PI;
+	game->player->pdx = cos(game->player->pa) * 5;
+	game->player->pdy = sin(game->player->pa) * 5;
 }

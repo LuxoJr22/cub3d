@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:56:51 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/11 16:57:16 by luxojr           ###   ########.fr       */
+/*   Updated: 2023/12/28 13:54:16 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,15 @@ void	game_scene(t_game *game)
 {
 	t_pos	start;
 	t_pos	length;
+	t_pos	pos;
 
 	start.x = 0;
 	start.y = 0;
 	length.x = 960;
 	length.y = 320;
+	pos.x = game->player->px;
+	pos.y = game->player->py;
+	game->player->col = init_col(pos, 10);
 	draw_back(game, start, length, effect_color(game, game->ceil_color));
 	start.y += length.y;
 	draw_back(game, start, length, effect_color(game, game->floor_color));
@@ -31,6 +35,9 @@ void	game_scene(t_game *game)
 		show_map(game);
 	if (game->frame % 2 == 0)
 		move(game);
+	if (game->frame % 15 == 0)
+		game->anim = game->anim->next;
+	collision(game, game->player->col, game->sprite.col);
 }
 
 int	scene_manager(t_game *game)

@@ -74,6 +74,8 @@ void	height_wall(t_game *game, float ra, int nb_ray, t_dist dis)
 		ty_off = (lineh - 640) / 2;
 		lineh = 640;
 	}
+	if (game->raycast.hmt != 0)
+		dis.hmt = 4;
 	t.y = ty_off * ty_step + dis.hmt * 32;
 	l.x = lineh;
 	l.y = ty_step;
@@ -87,6 +89,7 @@ t_dist	get_dist(t_game *game, float ra, int nb_ray, t_dist dis)
 		dis.a.x = game->raycast.hc.x;
 		dis.a.y = game->raycast.hc.y;
 		dis.dist = game->raycast.dis.x;
+		game->raycast.hmt = game->raycast.mt.x;
 		dis.hmt = 1;
 		if (ra > PI)
 			dis.hmt = 2;
@@ -96,6 +99,7 @@ t_dist	get_dist(t_game *game, float ra, int nb_ray, t_dist dis)
 		dis.a.x = game->raycast.vc.x;
 		dis.a.y = game->raycast.vc.y;
 		dis.dist = game->raycast.dis.y;
+		game->raycast.hmt = game->raycast.mt.y;
 		dis.hmt = 0;
 		if (ra > P2 && ra < P3)
 			dis.hmt = 3;
@@ -114,6 +118,7 @@ void	display_raycast(t_game *game)
 	int		nb_ray;
 	float	ra;
 	t_dist	dis;
+	float	depth[480];
 
 	ra = check_angle(game->player->pa - DR * 30);
 	nb_ray = 0;
@@ -121,8 +126,11 @@ void	display_raycast(t_game *game)
 	{
 		raycast(game, ra);
 		dis = get_dist(game, ra, nb_ray, dis);
+		depth[nb_ray] = dis.dist;
 		height_wall(game, ra, nb_ray, dis);
 		ra = check_angle(ra + DR / 8);
 		nb_ray ++;
 	}
+	if (game->sprite.active)
+		draw_sprites(game, depth);
 }
