@@ -155,6 +155,7 @@ typedef struct s_game
 	t_xpm		*south_xpm;
 	t_xpm		*west_xpm;
 	t_xpm		*tree_xpm;
+	t_xpm		**alphabet;
 }				t_game;
 
 char		**ft_split(char *str, char *charset);
@@ -171,6 +172,7 @@ void		cast_horizontal_line(t_game *game, float ra, float Tan);
 t_col		init_col(t_pos position, int scale);
 int			add_trgb(int color1, int color2);
 void		draw_minimap(t_game *game);
+void		show_xpm(t_game *game, t_xpm *xpm, int x, int y);
 void		create_img(t_game *game);
 void		get_map(t_game *game, char *name);
 void		draw_player(t_game *game);
@@ -214,5 +216,7 @@ int			exit_game(int i);
 void		draw_sprites(t_game *game, float depth[480]);
 int			collision(t_game *game, t_col hit1, t_col hit2);
 t_anim		*get_anims(t_game *game, char *path, int nb_sprites);
+void		get_font(t_game *game, char *file);
+void		show_str(t_game *game, int x, int y, char *str);
 
 #endif

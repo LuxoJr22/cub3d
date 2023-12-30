@@ -10,6 +10,8 @@ SRCS = cub3d.c \
 	   create_color.c \
 	   print_parsing_xpm.c \
 	   raycasting.c \
+	   draw_letter.c \
+	   show_xpm.c \
 	   movement.c \
 	   init.c \
 	   draw_mini.c \

@@ -17,9 +17,9 @@ void	open_door(t_game *game, int keycode)
 	int	mx;
 	int	my;
 
-	mx = (int)(game->player->px + ((game->player->pdx) / 10) * 2) / 64;
-	my = (int)(game->player->py + ((game->player->pdy) / 10) * 2) / 64;
-	if (game->map[my * game->map_w + mx] == ('D') && keycode == 101)
+	mx = (int)(game->player->px + ((game->player->pdx) * 4) * 2) / 64;
+	my = (int)(game->player->py + ((game->player->pdy) * 4) * 2) / 64;
+	if (game->map[my * game->map_w + mx] == 'D' && keycode == 101)
 		game->map[my * game->map_w + mx] = 0;
 }
 

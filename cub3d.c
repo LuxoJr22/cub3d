@@ -91,6 +91,7 @@ int	main(void)
 	game->mouse.pos.y = 0;
 	game->mouse.act_pos.x = 0;
 	game->mouse.act_pos.y = 0;
+	get_font(game, "assets/font/");
 	mlx_hook(game->mlx_win, 17, (1L << 0), exit_game, params);
 	mlx_hook(game->mlx_win, 2, (1L << 0), key_manager, game);
 	mlx_hook(game->mlx_win, 3, (1L << 1), relinput, game);

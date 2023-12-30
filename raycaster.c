@@ -128,9 +128,17 @@ void	display_raycast(t_game *game)
 		dis = get_dist(game, ra, nb_ray, dis);
 		depth[nb_ray] = dis.dist;
 		height_wall(game, ra, nb_ray, dis);
-		ra = check_angle(ra + DR / 8);
+		ra = check_angle(ra + (DR / 8));
 		nb_ray ++;
 	}
 	if (game->sprite.active)
 		draw_sprites(game, depth);
+
+	int	mx;
+	int	my;
+
+	mx = (int)(game->player->px + ((game->player->pdx * 2)) * 4) / 64;
+	my = (int)(game->player->py + ((game->player->pdy * 2)) * 4) / 64;
+	if (game->map[my * game->map_w + mx] == 'D')
+		show_str(game, 200 , 400, "press e to open the door");
 }
