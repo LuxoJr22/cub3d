@@ -41,7 +41,7 @@ static void	get_chr_between_dquotes(t_xpm *xpm)
 void	feed_xpm_width_height_nbcolors(t_xpm *xpm)
 {
 	char	**caracs;
-	
+
 	get_carac_line(xpm);
 	get_chr_between_dquotes(xpm);
 	caracs = ft_split(xpm->carac_line, " ");

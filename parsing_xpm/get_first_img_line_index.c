@@ -30,6 +30,5 @@ void	get_first_img_line_index(t_xpm *xpm)
 		}
 		i++;
 	}
-	//printf("get_first_img_line_index : xpm->file_lbl = %s", xpm->file_lbl[i]);
 	xpm->len_first_img_line = xpm_strlen(xpm->file_lbl[i]);
 }

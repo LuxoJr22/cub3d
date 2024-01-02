@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_size_ntcharss.c                                :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:04:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:04:18 by nstoutze         ###   ########.fr       */
+/*   Created: 2024/01/02 20:03:34 by nstoutze          #+#    #+#             */
+/*   Updated: 2024/01/02 20:03:34 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	get_size_ntcharss(char **ntcharss)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
 	i = 0;
-	while (ntcharss[i])
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
 		i++;
-	return (i);
+	return (s1[i] - s2[i]);
 }

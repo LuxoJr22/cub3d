@@ -34,8 +34,8 @@ SRCS = cub3d.c \
 	   parsing_xpm/ft_bzero.c \
 	   parsing_xpm/ft_memset.c \
 	   parsing_xpm/ft_substr.c \
+	   parsing_xpm/ft_strcmp.c \
 	   parsing_xpm/get_first_img_line_index.c \
-	   parsing_xpm/get_img_one_chars.c \
 	   parsing_xpm/get_nb_lines.c \
 	   parsing_xpm/get_next_line_bonus.c \
 	   parsing_xpm/get_next_line_utils_bonus.c \

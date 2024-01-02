@@ -12,7 +12,6 @@
 
 #include "parsing_xpm.h"
 
-
 /*
 feeds :
 	(t_colors *)colors_node->(char *)symbol
@@ -22,7 +21,7 @@ void	feed_colors_node(t_xpm *xpm, t_colors *colors_node, int i)
 {
 	char	**line_splitted;
 	char	special_sep;
-	
+
 	if (i < xpm->nb_lines && slen(xpm->file_lbl[i]) > 2)
 	{
 		line_splitted = ft_split(xpm->file_lbl[i], " \t");
@@ -46,25 +45,3 @@ void	feed_colors_node(t_xpm *xpm, t_colors *colors_node, int i)
 	}
 	free_ntcharss(&line_splitted);
 }
-
-
-/*
-feeds colors_node->(char *)symbol
-feeds colors_node->(char *)color
-*/
-/*
-void	feed_colors_node(t_xpm *xpm, t_colors *colors_node, int i)
-{
-	char	**line_splitted;
-	
-	if (i < xpm->nb_lines)
-	{
-		if (slen(xpm->file_lbl[i]) > 2)
-			colors_node->symbol = xpm->file_lbl[i][1];
-		line_splitted = ft_split(xpm->file_lbl[i], " ");
-		if (get_size_ntcharss(line_splitted) >= 3)
-			colors_node->color = ft_substr(line_splitted[2], 0, slen(line_splitted[2]) - 3);
-	}
-	free_ntcharss(&line_splitted);
-}
-*/

@@ -17,7 +17,7 @@ void	feed_file_lbl(t_xpm *xpm)
 	int		fd;
 	char	*line;
 	int		i;
-	
+
 	if (xpm->valid)
 	{
 		xpm->file_lbl = malloc_full_null_charss(xpm->nb_lines - 1);
@@ -26,7 +26,6 @@ void	feed_file_lbl(t_xpm *xpm)
 		i = -1;
 		while (line)
 		{
-			//printf("line = %s", line); // à supprimer
 			xpm->file_lbl[++i] = ft_strdup(line);
 			free_chars(&line);
 			line = get_next_line(fd);
