@@ -12,8 +12,34 @@
 
 #include "cub3d.h"
 
+void	free_xpm_array(t_xpm **array, int size)
+{
+	if (!array)
+		return;
+	while (--size >= 0)
+	{
+		if (array[size]) 
+		{
+			free_xpm(array[size]);
+			array[size] = NULL;
+		}
+	}
+	free(array);
+}
+
+void	free_xpms(t_game *game)
+{
+	free_xpm(game->north_xpm);
+	free_xpm(game->south_xpm);
+	free_xpm(game->west_xpm);
+	free_xpm(game->east_xpm);
+	free_xpm(game->tree_xpm);
+	free_xpm_array(game->alphabet, 26);
+}
+
 int	exit_game(int i)
 {
+	//free_xpms(); //exit_game doit recevoir en paramètre game, pour avoir accès aux xpm rattachés
 	exit (1);
 	return (1);
 }

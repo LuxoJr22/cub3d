@@ -12,27 +12,41 @@
 
 #include "parsing_xpm.h"
 
-/*
-typedef struct s_xpm
+static void	free_ints(int **dust)
 {
-	char		*carac_line;
-	int			carac_line_index;
-	int			first_color_line_index;
-	int			last_color_line_index;
-	int			first_img_line_index;
-	char		*img_one_chars;
-	t_bool		valid;
-	char		*filename;
-	int			nb_lines;
-	char		**file_lbl;
-	int			height;
-	int			width;
-	int			nb_colors;
-	t_colors	*colors;
-} t_xpm;
-*/
+	if (*dust)
+	{
+		free(*dust);
+		*dust = NULL;
+	}
+}
 
-void	free_xpm(t)
+static void	free_colors(t_xpm *xpm)
 {
-	
+	t_colors	*colors_node;
+	t_colors	*colors_node_next;
+
+	colors_node = xpm->colors;
+	while (colors_node)
+	{
+		colors_node_next = colors_node->next;
+		free_chars(&(colors_node->symbol));
+		free_chars(&(colors_node->color));
+		free(colors_node);
+		colors_node = colors_node_next;
+	}
+}
+
+void	free_xpm(t_xpm *xpm)
+{
+	free_chars(&(xpm->carac_line));
+	free_chars(&(xpm->filename));
+	free_ntcharss(&(xpm->file_lbl));
+	free_ints(&(xpm->img_ints));
+	free_colors(xpm);
+	if (xpm)
+	{
+		free(xpm);
+		xpm = NULL;
+	}
 }
