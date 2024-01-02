@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:56:51 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/29 00:53:43 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/02 16:08:18 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	game_scene(t_game *game)
 	draw_back(game, start, length, effect_color(game, game->ceil_color));
 	start.y += length.y;
 	draw_back(game, start, length, effect_color(game, game->floor_color));
-	display_raycast(game);
+	//display_raycast(game);
+	raycasting(game);
 	if (game->map_active == 0)
 		draw_minimap(game);
 	else

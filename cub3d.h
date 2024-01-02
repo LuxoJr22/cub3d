@@ -115,6 +115,19 @@ typedef struct s_raycaster
 
 }				t_raycaster;
 
+typedef struct s_raycaster2
+{
+	t_pos	raydir;
+	t_pos	sideDist;
+	t_pos	deltadist;
+	t_p		step;
+	t_p		map;
+	float	perpwalldist;
+	int		side;
+	int		hmt;
+
+}				t_raycaster2;
+
 typedef struct s_dist
 {
 	t_pos	a;
@@ -132,6 +145,7 @@ typedef struct s_mouse
 typedef struct s_game
 {
 	int			*map;
+	t_pos		plan;
 	void		*mlx;
 	void		*mlx_win;
 	t_player	*player;
@@ -143,6 +157,7 @@ typedef struct s_game
 	void		*actframe;
 	int			*textures;
 	t_raycaster	raycast;
+	t_raycaster2	rcast;
 	int			floor_color;
 	int			ceil_color;
 	int			map_h;
@@ -160,6 +175,7 @@ typedef struct s_game
 
 char		**ft_split(char *str, char *charset);
 int			ft_atoi(char *str);
+float		ret_abs(float i);
 int			create_color(char *str);
 int			ft_strlen(char *str);
 char		*ft_strjoin(char *s1, char *s2);
@@ -188,6 +204,7 @@ int			move(t_game *game);
 void		move_back(t_game *game);
 void		move_front(t_game *game);
 void		move_left(t_game *game);
+void		raycasting(t_game *game);
 void		move_right(t_game *game);
 int			ft_atoi(char *str);
 t_game		*init_game(t_player *player);

@@ -30,6 +30,10 @@ void	jump(t_game *game)
 
 void	move_camera(t_game *game)
 {
+	float	old;
+	float	speed;
+
+	speed = 0.005;
 	if (game->player->cm > 0)
 	{
 		game->player->pa += game->player->cm * 0.005;
@@ -37,6 +41,10 @@ void	move_camera(t_game *game)
 			game->player->pa -= 2 * PI;
 		game->player->pdx = cos(game->player->pa) * 5;
 		game->player->pdy = sin(game->player->pa) * 5;
+
+		old = game->plan.x;
+		game->plan.x = game->plan.x * cos(speed * game->player->cm) - game->plan.y * sin(speed * game->player->cm);
+      	game->plan.y = old * sin(speed * game->player->cm) + game->plan.y * cos(speed * game->player->cm);
 	}
 	if (game->player->cm < 0)
 	{
@@ -45,6 +53,9 @@ void	move_camera(t_game *game)
 			game->player->pa += 2 * PI;
 		game->player->pdx = cos(game->player->pa) * 5;
 		game->player->pdy = sin(game->player->pa) * 5;
+		old = game->plan.x;
+		game->plan.x = game->plan.x * cos(speed *game->player->cm) - game->plan.y * sin(speed * game->player->cm);
+      	game->plan.y = old * sin(speed * game->player->cm) + game->plan.y * cos(speed * game->player->cm);
 	}
 }
 

@@ -13,6 +13,7 @@ SRCS = cub3d.c \
 	   draw_letter.c \
 	   show_xpm.c \
 	   movement.c \
+	   raycaster2.c \
 	   init.c \
 	   draw_mini.c \
 	   collision.c \
