@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_colors_node.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:23:50 by nstoutze          #+#    #+#             */
-/*   Updated: 2024/01/11 18:03:23 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/12 20:19:33 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	add_colors_node(t_xpm *xpm, int i)
 {
 	t_colors	*colors_node;
 	t_colors	*last;
-	
+
 	if (i == xpm->first_color_line_index)
 		feed_colors_node(xpm, xpm->colors, i);
 	else if (i > xpm->first_color_line_index)
@@ -24,10 +24,12 @@ void	add_colors_node(t_xpm *xpm, int i)
 		colors_node = new_colors();
 		feed_colors_node(xpm, colors_node, i);
 		last = xpm->colors;
+		print_colors_node(last);
 		while (last->next)
+		{
 			last = last->next;
-		last->next = NULL;
+			print_colors_node(last);
+		}
 		last->next = colors_node;
-		last->next->next = NULL;
 	}
 }
