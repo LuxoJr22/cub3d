@@ -12,7 +12,7 @@
 
 #include "parsing_xpm.h"
 
-t_colors	*new_colors()
+t_colors	*new_colors(void)
 {
 	t_colors	*new;
 

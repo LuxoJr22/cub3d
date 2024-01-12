@@ -14,7 +14,6 @@
 
 void	check_img_rectangular(t_xpm *xpm)
 {
-	//printf("check_img_rectangular : xpm->len_first_img_line = %d\n", xpm->len_first_img_line);
 	int	i;
 
 	i = xpm->first_img_line_index;

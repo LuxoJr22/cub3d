@@ -29,8 +29,7 @@ typedef enum e_bool
 {
 	FALSE,
 	TRUE
-} t_bool;
-
+}	t_bool;
 
 typedef struct s_xpm
 {
@@ -52,7 +51,7 @@ typedef struct s_xpm
 	int			*img_ints;
 	int			len_first_img_line;
 	t_bool		rectangular;
-} t_xpm;
+}	t_xpm;
 
 void		add_colors_node(t_xpm *xpm, int i);
 void		adjust_colors(t_xpm *xpm);
@@ -69,12 +68,12 @@ void		free_xpm(t_xpm *xpm);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
+int			ft_strcmp(char *s1, char *s2);
 void		get_first_img_line_index(t_xpm *xpm);
-void		get_img_one_chars(t_xpm *xpm);
 void		get_nb_lines(t_xpm *xpm);
 int			get_size_ntcharss(char **ntcharss);
 char		**malloc_full_null_charss(int size);
-t_colors	*new_colors();
+t_colors	*new_colors(void);
 t_xpm		*new_xpm(char *filename);
 t_xpm		*parsing_xpm(char *filename);
 int			xpm_strlen(char *xpm_line);

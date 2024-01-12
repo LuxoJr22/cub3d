@@ -19,7 +19,7 @@ static void	get_first_color_line_index(t_xpm *xpm)
 	i = xpm->carac_line_index;
 	while (xpm->file_lbl[++i])
 	{
-		if (xpm->file_lbl[i][0] = '"')
+		if (xpm->file_lbl[i][0] == '"')
 		{
 			xpm->first_color_line_index = i;
 			return ;

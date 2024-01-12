@@ -17,7 +17,7 @@ void	get_nb_lines(t_xpm *xpm)
 	int		nb_lines;
 	int		fd;
 	char	*line;
-	
+
 	nb_lines = 0;
 	fd = open(xpm->filename, O_RDONLY);
 	if (fd == -1)

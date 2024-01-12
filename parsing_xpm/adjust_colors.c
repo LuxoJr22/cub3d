@@ -14,8 +14,6 @@
 
 void	adjust_colors(t_xpm *xpm)
 {
-	//printf("adjust_colors : ENTREE\n");
-
 	t_colors	*colors_node;
 	char		*temp;
 
@@ -23,7 +21,6 @@ void	adjust_colors(t_xpm *xpm)
 	temp = NULL;
 	while (colors_node)
 	{
-		//printf("adjust_colors : nouvelle itération\n");
 		if (ft_strlen(colors_node->symbol) == 1)
 		{
 			temp = ft_strdup(colors_node->symbol);
@@ -33,5 +30,4 @@ void	adjust_colors(t_xpm *xpm)
 		}
 		colors_node = colors_node->next;
 	}
-	//printf("adjust_colors : fin\n");
 }
