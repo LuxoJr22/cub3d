@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/29 16:37:38 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/29 18:05:41 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/03 00:51:45 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	show_xpm(t_game *game, t_xpm *xpm, int x, int y)
 {
-	int xi;
-	int yi;
+	int	xi;
+	int	yi;
 
 	xi = 0;
 	yi = 0;
@@ -23,7 +23,8 @@ void	show_xpm(t_game *game, t_xpm *xpm, int x, int y)
 	{
 		while (yi < xpm->height)
 		{
-			my_mlx_pixel_put(&game->frame1, x + xi ,y + yi, xpm->img_ints[yi * xpm->width + xi]);
+			my_mlx_pixel_put(&game->frame1, x + xi, y + yi,
+				xpm->img_ints[yi * xpm->width + xi]);
 			yi ++;
 		}
 		yi = 0;

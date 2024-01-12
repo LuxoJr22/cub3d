@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:05:56 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/11 22:53:03 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/11 18:21:59 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*add_malloc(char *str, char buf)
 	return (str_ret);
 }
 
-int	get_character(t_game *game, char buf[2], char *str, int fd)
+char	*get_character(t_game *game, char buf[2], char *str, int fd)
 {
 	if (buf[0] == 'C')
 	{
@@ -57,7 +57,7 @@ int	get_character(t_game *game, char buf[2], char *str, int fd)
 			str = add_malloc(str, buf[0]);
 		game->floor_color = get_color(str);
 	}
-	return (1);
+	return (str);
 }
 
 void	get_map(t_game *game, char *name)
@@ -75,7 +75,8 @@ void	get_map(t_game *game, char *name)
 	{
 		if (buf[0] == 'F' || buf[0] == 'C')
 		{
-			other += get_character(game, buf, str, fd);
+			str = get_character(game, buf, str, fd);
+			other ++;
 			str = reset_str(str);
 		}
 		if ((buf[0] == ' ' || buf[0] == '1') && other == 2)
@@ -87,4 +88,5 @@ void	get_map(t_game *game, char *name)
 			str = reset_str(str);
 		}
 	}
+	free(str);
 }

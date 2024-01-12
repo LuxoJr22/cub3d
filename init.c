@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:59:44 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/01 16:17:48 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/11 14:44:32 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,56 +25,41 @@ t_player	*init_player(void)
 	player->cm = 0;
 	player->sprint = 1;
 	player->height = 1;
+	player->dx = 0;
+	player->dy = 0;
 	player->actheight = 1;
 	player->is_jump = 0;
 	player->coin = 0;
+	player->health = 10;
+	player->is_hit = 0;
+	player->time_hit = 0;
 	return (player);
 }
 
-t_game	*init_game(t_player *player)
+void	init_mouse(t_game *game)
 {
-	t_game		*game;
-	int			imgw;
-	int			imgh;
-
-	game = malloc(sizeof(t_game));
-	game->map_active = 0;
-	game->mlx = mlx_init();
-	game->mlx_win = mlx_new_window(game->mlx, 960, 640, "Cub3d");
-	game->player = player;
-	game->img.img = mlx_new_image(game->mlx, 960, 640);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits,
-			&game->img.line_length, &game->img.endian);
-	game->frame1.img = mlx_new_image(game->mlx, 960, 640);
-	game->frame1.addr = mlx_get_data_addr(game->frame1.img, &game->frame1.bits,
-			&game->frame1.line_length, &game->frame1.endian);
-	game->frame2.img = mlx_new_image(game->mlx, 960, 640);
-	game->frame2.addr = mlx_get_data_addr(game->frame2.img, &game->frame2.bits,
-			&game->frame2.line_length, &game->frame2.endian);
-	game->map_h = 8;
-	game->map_w = 8;
-	get_map(game, "map.cub");
-	game->frame = 0;
-	return (game);
+	game->mouse.pos.x = 0;
+	game->mouse.pos.y = 0;
+	game->mouse.act_pos.x = 0;
+	game->mouse.act_pos.y = 0;
 }
 
-void	init_sprites(t_game *game)
+void	init_enemies(t_game *game, char *name, int nb_sprites, t_pos pos)
 {
-	t_pos	pos;
+	t_ennemies	*ennemy;
+	t_ennemies	*next;
 
-	game->north_xpm = parsing_xpm("assets/tree.xpm");
-	game->south_xpm = parsing_xpm("assets/south.xpm");
-	game->east_xpm = parsing_xpm("assets/east.xpm");
-	game->west_xpm = parsing_xpm("assets/west.xpm");
-	game->textures = all_text(game);
-	game->sprite.pos.x = 25 * 64 + 32;
-	game->sprite.pos.y = 3 * 64 + 32;
-	game->sprite.pos.z = 20;
-	game->sprite.active = 1;
-	pos.x = game->sprite.pos.x;
-	pos.y = game->sprite.pos.y;
-	game->sprite.col = init_col(pos, 10);
-	game->anim = get_anims(game, "assets/penny/", 5);
+	ennemy = malloc(sizeof(t_ennemies));
+	ennemy->next = 0;
+	ennemy->text = get_anims(game, name, nb_sprites);
+	ennemy->pos = pos;
+	ennemy->col = init_col(pos, 10);
+	ennemy->range = init_col(pos, 500);
+	ennemy->health = 5;
+	next = game->ennemies;
+	while (next->next)
+		next = next->next;
+	next->next = ennemy;
 }
 
 void	set_player_pos(t_game *game, int offx, int offy, char c)

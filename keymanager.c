@@ -26,7 +26,9 @@ void	open_door(t_game *game, int keycode)
 int	key_manager(int keycode, t_game *game)
 {
 	/*if (keycode == 65307)
-		exit(1);*/
+		exit_game(game);*/
+	if (keycode == 32)
+		boost(game, game->player->pa, 50, 0);
 	if (keycode == 65363)
 		game->player->cm = 1;
 	if (keycode == 65361)
@@ -43,13 +45,16 @@ int	key_manager(int keycode, t_game *game)
 		game->map_active = 1;
 	if (keycode == 65505)
 		game->player->sprint = 1.5;
-	if (keycode == 32 && game->player->is_jump == 0)
-	{
-		game->player->height = 5;
-		game->player->is_jump = 1;
-	}
 	open_door(game, keycode);
 	return (1);
+}
+
+int	button_mouse(int keycode, int x, int y, t_game *game)
+{
+	if (keycode == 1)
+	{
+		shoot(game);
+	}
 }
 
 int	mouse_manager(int x, int y, t_game *game)

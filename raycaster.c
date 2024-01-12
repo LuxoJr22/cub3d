@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	display_wall(t_game *game, int nb_ray, t_pos l, t_pos t)
+/*void	display_wall(t_game *game, int nb_ray, t_pos l, t_pos t)
 {
 	t_pos	o;
 	int		y;
@@ -119,6 +119,7 @@ void	display_raycast(t_game *game)
 	float	ra;
 	t_dist	dis;
 	float	depth[480];
+	t_p		m;
 
 	ra = check_angle(game->player->pa - DR * 30);
 	nb_ray = 0;
@@ -127,18 +128,16 @@ void	display_raycast(t_game *game)
 		raycast(game, ra);
 		dis = get_dist(game, ra, nb_ray, dis);
 		depth[nb_ray] = dis.dist;
-		height_wall(game, ra, nb_ray, dis);
+		//height_wall(game, ra, nb_ray, dis);
 		ra = check_angle(ra + (DR / 8));
 		nb_ray ++;
 	}
+	printf("1 : %f\n", depth[180]);
 	if (game->sprite.active)
 		draw_sprites(game, depth);
-
-	int	mx;
-	int	my;
-
-	mx = (int)(game->player->px + ((game->player->pdx * 2)) * 4) / 64;
-	my = (int)(game->player->py + ((game->player->pdy * 2)) * 4) / 64;
-	if (game->map[my * game->map_w + mx] == 'D')
-		show_str(game, 200 , 400, "press e to open the door");
+	m.x = (int)(game->player->px + ((game->player->pdx * 2)) * 4) / 64;
+	m.y = (int)(game->player->py + ((game->player->pdy * 2)) * 4) / 64;
+	if (game->map[m.y * game->map_w + m.x] == 'D')
+		show_str(game, 200, 400, "press e to open the door");
 }
+*/

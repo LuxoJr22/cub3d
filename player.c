@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+void	state(t_game *game)
+{
+	if (game->player->health <= 0 && game->transition == -1)
+		game->transition = 20;
+}
+
 void	jump(t_game *game)
 {
 	if (game->player->height == 5)
@@ -41,10 +47,6 @@ void	move_camera(t_game *game)
 			game->player->pa -= 2 * PI;
 		game->player->pdx = cos(game->player->pa) * 5;
 		game->player->pdy = sin(game->player->pa) * 5;
-
-		old = game->plan.x;
-		game->plan.x = game->plan.x * cos(speed * game->player->cm) - game->plan.y * sin(speed * game->player->cm);
-      	game->plan.y = old * sin(speed * game->player->cm) + game->plan.y * cos(speed * game->player->cm);
 	}
 	if (game->player->cm < 0)
 	{
@@ -53,9 +55,30 @@ void	move_camera(t_game *game)
 			game->player->pa += 2 * PI;
 		game->player->pdx = cos(game->player->pa) * 5;
 		game->player->pdy = sin(game->player->pa) * 5;
-		old = game->plan.x;
-		game->plan.x = game->plan.x * cos(speed *game->player->cm) - game->plan.y * sin(speed * game->player->cm);
-      	game->plan.y = old * sin(speed * game->player->cm) + game->plan.y * cos(speed * game->player->cm);
+	}
+	old = game->plan.x;
+	game->plan.x = game->plan.x * cos(speed * game->player->cm)
+		- game->plan.y * sin(speed * game->player->cm);
+	game->plan.y = old * sin(speed * game->player->cm)
+		+ game->plan.y * cos(speed * game->player->cm);
+}
+
+void	shoot(t_game *game)
+{
+	t_ennemies	*ennemy;
+	t_pos		pos;
+
+	pos.x = game->player->px;
+	pos.y = game->player->py;
+	ennemy = game->ennemies->next;
+	while (ennemy)
+	{
+		if (hit_ennemies(game, ennemy->col) == 1)
+		{
+			ennemy->health -= 1;
+			boost(game, get_angle(ennemy->pos, pos), 30, ennemy);
+		}
+		ennemy = ennemy->next;
 	}
 }
 

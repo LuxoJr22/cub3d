@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:37:31 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/29 17:36:18 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/12 16:44:50 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ void	get_font(t_game *game, char *file)
 	t_p		img;
 
 	i = 0;
-	alphabet = malloc(sizeof(t_xpm) * 26);
+	alphabet = malloc(sizeof(t_xpm *) * 26);
 	str = ft_strjoin(file, "a.xpm");
 	while (i < 26)
 	{
 		alphabet[i] = parsing_xpm(str);
-		str[ft_strlen(file)] ++;
+		str[ft_strlen(file)]++;
 		i ++;
 	}
+	free(str);
 	game->alphabet = alphabet;
 }
 
 void	show_str(t_game *game, int x, int y, char *str)
 {
-	int i;
+	int	i;
 	int	l;
 
 	i = 0;

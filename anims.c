@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:24:56 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/21 23:46:46 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/11 18:04:32 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_itoa(int i)
 
 	nb_d = 1;
 	act = i;
-	while (act > 10)
+	while (act >= 10)
 	{
 		act /= 10;
 		nb_d ++;
@@ -38,6 +38,20 @@ char	*ft_itoa(int i)
 	return (str);
 }
 
+void	get_anim(char *path, int i, t_anim *act)
+{
+	t_xpm	*xpm;
+	char	*name;
+
+	name = ft_strjoin_f(path, ft_strjoin_f(ft_itoa(i), ".xpm", 1), 2);
+	xpm = parsing_xpm(name);
+	act->text = xpm->img_ints;
+	act->height = xpm->height;
+	act->width = xpm->width;
+	act->xpm = xpm;
+	free(name);
+}
+
 t_anim	*get_anims(t_game *game, char *path, int nb_sprites)
 {
 	int		i;
@@ -51,8 +65,7 @@ t_anim	*get_anims(t_game *game, char *path, int nb_sprites)
 	act = start;
 	while (i < nb_sprites)
 	{
-		name = ft_strjoin(path, ft_strjoin(ft_itoa(i), ".xpm"));
-		act->text = parsing_xpm(name)->img_ints;
+		get_anim(path, i, act);
 		i ++;
 		if (i < nb_sprites)
 		{
