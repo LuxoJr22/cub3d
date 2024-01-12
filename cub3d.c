@@ -96,3 +96,5 @@ int	main(void)
 	mlx_loop(game->mlx);
 	return (EXIT_SUCCESS);
 }
+
+// penser à virer fsanitize dans le Makefile

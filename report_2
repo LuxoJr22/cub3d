@@ -1,0 +1,63 @@
+nstoutze@Ubuntu:/media/sf_VM/cub3d$ make ; valgrind --leak-check=full --track-origins=yes ./cub3d
+gcc -I/usr/include -Imlx_linux -O3 -c parsing_xpm/free_xpm.c -o parsing_xpm/free_xpm.o
+gcc -I/usr/include -Imlx_linux -O3 -c parsing_xpm/new_xpm.c -o parsing_xpm/new_xpm.o
+gcc cub3d.o draw.o keymanager.o player.o raycaster.o utils.o ft_split.o parsing.o minimap.o utils2.o free.o shoot.o init_game.o create_color.o print_parsing_xpm.o utils_raycast.o raycasting.o draw_letter.o show_xpm.o movement.o raycaster2.o init.o draw_mini.o dir_vector.o transitions.o collision.o ennemies.o anims.o scene_manager.o utils_parsing.o parsing_xpm/add_colors_node.o parsing_xpm/adjust_colors.o parsing_xpm/build_colors_chained_list.o parsing_xpm/build_img_ints.o parsing_xpm/check_colorsymbol_mode.o parsing_xpm/check_img_rectangular.o parsing_xpm/feed_file_lbl.o parsing_xpm/feed_xpm_width_height_nbcolors.o parsing_xpm/feed_colors_node.o parsing_xpm/free_chars.o parsing_xpm/free_ntcharss.o parsing_xpm/free_xpm.o parsing_xpm/ft_bzero.o parsing_xpm/ft_memset.o parsing_xpm/ft_substr.o parsing_xpm/ft_strcmp.o parsing_xpm/get_first_img_line_index.o parsing_xpm/get_nb_lines.o parsing_xpm/get_next_line_bonus.o parsing_xpm/get_next_line_utils_bonus.o parsing_xpm/get_size_ntcharss.o parsing_xpm/malloc_full_null_charss.o parsing_xpm/new_colors.o parsing_xpm/new_xpm.o parsing_xpm/parsing_xpm.o parsing_xpm/xpm_strlen.o -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o cub3d
+==9747== Memcheck, a memory error detector
+==9747== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==9747== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==9747== Command: ./cub3d
+==9747== 
+==9747== Invalid read of size 8
+==9747==    at 0x10ABD3: exit_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x112421: mlx_loop (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AA40: main (in /media/sf_VM/cub3d/cub3d)
+==9747==  Address 0x4d35228 is 56 bytes inside a block of size 64 free'd
+==9747==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9747==    by 0x10C814: free_ennemies (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AB78: exit_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x112421: mlx_loop (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AA40: main (in /media/sf_VM/cub3d/cub3d)
+==9747==  Block was alloc'd at
+==9747==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9747==    by 0x10D055: init_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10A8D1: main (in /media/sf_VM/cub3d/cub3d)
+==9747== 
+==9747== Invalid read of size 8
+==9747==    at 0x10ABD7: exit_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x112421: mlx_loop (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AA40: main (in /media/sf_VM/cub3d/cub3d)
+==9747==  Address 0x5d93ff0 is 48 bytes inside a block of size 64 free'd
+==9747==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9747==    by 0x10C82B: free_ennemies (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AB78: exit_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x112421: mlx_loop (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10AA40: main (in /media/sf_VM/cub3d/cub3d)
+==9747==  Block was alloc'd at
+==9747==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9747==    by 0x10EC66: init_enemies (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10A976: main (in /media/sf_VM/cub3d/cub3d)
+==9747== 
+==9747== 
+==9747== HEAP SUMMARY:
+==9747==     in use at exit: 83,285 bytes in 64 blocks
+==9747==   total heap usage: 260,088 allocs, 260,024 frees, 4,103,999 bytes allocated
+==9747== 
+==9747== 1,848 bytes in 1 blocks are definitely lost in loss record 36 of 43
+==9747==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==9747==    by 0x10BEEF: create_map (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x11074A: get_map (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10D0FA: init_game (in /media/sf_VM/cub3d/cub3d)
+==9747==    by 0x10A8D1: main (in /media/sf_VM/cub3d/cub3d)
+==9747== 
+==9747== LEAK SUMMARY:
+==9747==    definitely lost: 1,848 bytes in 1 blocks
+==9747==    indirectly lost: 0 bytes in 0 blocks
+==9747==      possibly lost: 0 bytes in 0 blocks
+==9747==    still reachable: 81,437 bytes in 63 blocks
+==9747==         suppressed: 0 bytes in 0 blocks
+==9747== Reachable blocks (those to which a pointer was found) are not shown.
+==9747== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==9747== 
+==9747== For lists of detected and suppressed errors, rerun with: -s
+==9747== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 7 from 1)
+

@@ -6,7 +6,7 @@
 /*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:11:08 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:11:08 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/12 18:49:28 by nstoutze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ t_colors	*new_colors(void)
 		return (NULL);
 	new->color = NULL;
 	new->next = NULL;
+	return (new);
 }

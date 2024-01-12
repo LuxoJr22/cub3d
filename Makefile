@@ -63,10 +63,12 @@ OBJS = ${SRCS:.c=.o}
 NAME = cub3d
 
 .c.o:
+#	gcc -I/usr/include -Imlx_linux -O3 -fsanitize=address -c $< -o ${<:.c=.o}
 	gcc -I/usr/include -Imlx_linux -O3 -c $< -o ${<:.c=.o}
 
 
 ${NAME}: ${OBJS}
+#	gcc ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -fsanitize=address -o ${NAME}
 	gcc ${OBJS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME}
 
 all:	${NAME}
