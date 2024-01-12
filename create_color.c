@@ -6,22 +6,11 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 17:13:33 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/11 17:02:55 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:26:19 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static int	get_number(char c)
-{
-	int	i;
-
-	if (c >= 'A')
-		i = c - 'A' + 10;
-	else
-		i = c - '0';
-	return (i);
-}
 
 int	create_color(char *str)
 {
@@ -33,6 +22,16 @@ int	create_color(char *str)
 	g = get_number(str[3]) * 16 + get_number(str[4]);
 	b = get_number(str[5]) * 16 + get_number(str[6]);
 	return (get_trgb(0, r, g, b));
+}
+
+t_rgb	get_colors(int color)
+{
+	t_rgb	col;
+
+	col.r = color >> 16;
+	col.g = (color >> 8) - (col.r << 8);
+	col.b = color - (col.g << 8) - (col.r << 16);
+	return (col);
 }
 
 int	get_trgb(int t, int r, int g, int b)

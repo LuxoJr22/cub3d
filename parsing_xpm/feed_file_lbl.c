@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   feed_file_lbl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:08:17 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:08:17 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/12 02:58:01 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	feed_file_lbl(t_xpm *xpm)
 			line = get_next_line(fd);
 		}
 		xpm->file_lbl[++i] = ft_strdup(line);
-		free_chars(&line);
+		//xpm->file_lbl[++i] = 0;
+		free(line);
 		close(fd);
 	}
 }

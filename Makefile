@@ -7,8 +7,13 @@ SRCS = cub3d.c \
 	   ft_split.c \
 	   parsing.c \
 	   minimap.c \
+	   utils2.c \
+	   free.c \
+	   shoot.c \
+	   init_game.c \
 	   create_color.c \
 	   print_parsing_xpm.c \
+	   utils_raycast.c \
 	   raycasting.c \
 	   draw_letter.c \
 	   show_xpm.c \
@@ -16,7 +21,10 @@ SRCS = cub3d.c \
 	   raycaster2.c \
 	   init.c \
 	   draw_mini.c \
+	   dir_vector.c \
+	   transitions.c \
 	   collision.c \
+	   ennemies.c \
 	   anims.c \
 	   scene_manager.c \
 	   utils_parsing.c \
@@ -31,6 +39,7 @@ SRCS = cub3d.c \
 	   parsing_xpm/feed_colors_node.c \
 	   parsing_xpm/free_chars.c \
 	   parsing_xpm/free_ntcharss.c \
+	   parsing_xpm/free_xpm.c \
 	   parsing_xpm/ft_bzero.c \
 	   parsing_xpm/ft_memset.c \
 	   parsing_xpm/ft_substr.c \

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 23:03:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 16:59:11 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/02 19:38:59 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		feed_file_lbl(t_xpm *xpm);
 void		feed_xpm_width_height_nbcolors(t_xpm *xpm);
 void		free_chars(char **dust);
 void		free_ntcharss(char ***dust);
+void		free_xpm(t_xpm *xpm);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);

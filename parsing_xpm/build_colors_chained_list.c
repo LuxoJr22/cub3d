@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_colors_chained_list.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:24:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 15:24:18 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/11 18:03:13 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	build_colors_chained_list(t_xpm *xpm)
 {
 	int	i;
 	int	j;
-	
+
 	get_first_color_line_index(xpm);
 	i = xpm->first_color_line_index;
 	j = -1;

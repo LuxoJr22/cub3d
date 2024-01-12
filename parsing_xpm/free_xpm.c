@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_xpm.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:11:40 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/04 16:11:41 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:20:51 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_xpm(t_xpm *xpm)
 {
 	free_chars(&(xpm->carac_line));
 	free_chars(&(xpm->filename));
-	free_ntcharss(&(xpm->file_lbl));
+	//free_ntcharss(&(xpm->file_lbl));
 	free_ints(&(xpm->img_ints));
 	free_colors(xpm);
 	if (xpm)
