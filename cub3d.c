@@ -100,5 +100,3 @@ int	main(int argc, char **argv)
 	mlx_hooks(game);
 	return (EXIT_SUCCESS);
 }
-
-// penser à virer fsanitize dans le Makefile
