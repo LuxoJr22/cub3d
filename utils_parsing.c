@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:05:56 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 13:33:58 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 00:52:53 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ char	*assign_name(t_game *game, int fd, int i, char *str)
 
 	while (read(fd, buf, 1) && buf[0] != '\n')
 		str = add_malloc(str, buf[0]);
+	free(game->name_texture[i]);
 	game->name_texture[i] = ft_strdup(str);
 	return (str);
 }

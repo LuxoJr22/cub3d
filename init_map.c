@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:28 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 13:34:03 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 00:54:15 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ void	get_map(t_game *game, char *name)
 	int		other;
 	char	c;
 
+	game->name_texture[0] = malloc(0);
+	game->name_texture[1] = malloc(0);
+	game->name_texture[2] = malloc(0);
+	game->name_texture[3] = malloc(0);
 	other = 0;
 	str = malloc(sizeof(char));
 	str[0] = '\0';
@@ -84,7 +88,7 @@ void	get_map(t_game *game, char *name)
 	while (read(fd, buf, 1))
 		other = loop_map(game, buf, fd, other);
 	if (other != 6)
-		exit_game_code(game, 6, "Error: wrong format file\n");
+		exit_game_code(game, 7, "Error: wrong format file\n");
 	check_map(game);
 	free(str);
 }

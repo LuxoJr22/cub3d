@@ -19,19 +19,24 @@ int	get_color(char *str, t_game *game)
 	int		g;
 	int		b;
 
-	r = 256;
-	g = 256;
-	b = 256;
+	r = 257;
+	g = 257;
+	b = 257;
 	array = ft_split(str, ",");
 	if (array[0])
 		r = ft_atoi(array[0]);
-	if (r != 256 && array[1])
+	if (r != 257 && array[1])
 		g = ft_atoi(array[1]);
-	if (g != 256 && array[2])
+	if (g != 257 && array[2])
 		b = ft_atoi(array[2]);
 	free_dptr(array);
-	if (r == 256 || g == 256 || b == 256)
-		exit_game_code(game, 6, "Error: wrong color format\n");
+	if (r == 256 && g == 256 && b == 256)
+	{
+		game->is_ceiling = 1;
+		return (0);
+	}
+	if (r >= 256 || g >= 256 || b >= 256 || r < 0 || g < 0 || b < 0)
+		exit_game_code(game, 7, "Error: wrong color format\n");
 	return (get_trgb(0, r, g, b));
 }
 

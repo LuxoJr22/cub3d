@@ -196,6 +196,7 @@ typedef struct s_outcodes
 
 typedef struct s_game
 {
+	int			is_ceiling;
 	int			error;
 	int			transition;
 	int			*map;
@@ -248,6 +249,7 @@ void		get_name_text(t_game *game);
 void		show_sprite(t_game *game, t_scast sc, t_p pos, t_anim *text);
 void		show_wall(t_game *game, int nb_ray, int lineHeight);
 int			ft_atoi(char *str);
+void		floor_cast(t_game *game, int y);
 float		ret_abs(float i);
 int			create_color(char *str);
 int			ft_strlen(char *str);

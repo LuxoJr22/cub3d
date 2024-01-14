@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:36:37 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 15:02:46 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 00:54:11 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ t_game	*init_game(t_player *player, char *str)
 	game->transition = -1;
 	game->scene = 1;
 	game->error = 0;
+	game->is_ceiling = 0;
 	get_map(game, str);
 	game->frame = 0;
 	return (game);

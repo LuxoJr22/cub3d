@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:33:17 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 02:33:45 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 00:51:48 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	exit_game(t_game *game)
 	free(game->player);
 	free_ennemies(game);
 	free_forces(game);
-	free(game->map);
+	if (game->error != 7)
+		free(game->map);
 	mlx_destroy_image(game->mlx, game->frame1.img);
 	mlx_destroy_image(game->mlx, game->frame2.img);
 	mlx_destroy_image(game->mlx, game->img.img);

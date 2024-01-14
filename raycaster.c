@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:41:23 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 17:36:28 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 00:41:54 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,14 @@ void	raycaster(t_game *game, int nb_ray)
 void	raycasting(t_game *game)
 {
 	int		nb_ray;
+	int		nb_h;
 	int		lineheight;
 	t_p		m;
 
 	nb_ray = 0;
+	nb_h = -1;
+	while (game->is_ceiling && ++nb_h < 640)
+		floor_cast(game, nb_h);
 	while (nb_ray < 960)
 	{
 		raycaster(game, nb_ray);
