@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 23:45:10 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 16:40:37 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/13 21:16:27 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ void	draw_img(t_game *game, t_p d, t_p p, int side)
 			if ((m.x > p.x - 5 && m.x < p.x + 5)
 				&& (m.y > p.y - 5 && m.y < p.y + 5))
 			{
-				if (game->map[m.y * game->map_w + m.x] == 1)
+				if (game->map[m.y * game->map_w + m.x] == 1
+					|| game->map[m.y * game->map_w + m.x] == 2)
 					draw_cube(game, (m.x - p.x + 5) * side - d.x,
 						(m.y - p.y + 5) * side - d.y, 0x00FFFFFF);
 				else

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:49:03 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/10 19:27:01 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/12 22:16:31 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	collisions(t_game *game)
 	{
 		game->player->coin ++;
 		game->sprite.active = 0;
-		//free_anims(game->sprite.anim);
+		free_anims(game->sprite.anim);
 	}
 	ennemy = game->ennemies->next;
 	while (ennemy)

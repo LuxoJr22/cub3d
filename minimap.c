@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:16:59 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/11 18:27:45 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/13 21:14:01 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	draw_map(t_game *game, t_p p, t_p o, int side)
 		{
 			pos.x = p.x * side + o.x;
 			pos.y = p.y * side + o.y;
-			if (game->map[p.y * game->map_w + p.x] == 1)
+			if (game->map[p.y * game->map_w + p.x] == 1
+				|| game->map[p.y * game->map_w + p.x] == 2)
 				draw_cube_side(game, pos, 0x00FFFFFF, side);
 			else
 				draw_cube_side(game, pos, 0x00000000, side);

@@ -25,8 +25,8 @@ void	open_door(t_game *game, int keycode)
 
 int	key_manager(int keycode, t_game *game)
 {
-	/*if (keycode == 65307)
-		exit_game(game);*/
+	if (keycode == 65307)
+		exit_game(game);
 	if (keycode == 32)
 		boost(game, game->player->pa, 50, 0);
 	if (keycode == 65363)

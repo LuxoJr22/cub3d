@@ -9,16 +9,19 @@ SRCS = cub3d.c \
 	   minimap.c \
 	   utils2.c \
 	   free.c \
+	   init_map.c \
 	   shoot.c \
 	   init_game.c \
 	   create_color.c \
-	   print_parsing_xpm.c \
 	   utils_raycast.c \
+	   exit.c \
+	   utils_init.c \
+	   utils3.c \
 	   raycasting.c \
 	   draw_letter.c \
 	   show_xpm.c \
 	   movement.c \
-	   raycaster2.c \
+	   show_raycast.c \
 	   init.c \
 	   draw_mini.c \
 	   dir_vector.c \

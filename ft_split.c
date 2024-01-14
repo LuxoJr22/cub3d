@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:47:35 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/11 16:38:42 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/14 15:46:52 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ char	**ft_split(char *str, char *charset)
 	int		num_word;
 	int		i;
 
+	if (!str)
+		return (0);
 	nb_words = nb_words_in_str(str, charset);
 	num_word = -1;
 	i = 0;

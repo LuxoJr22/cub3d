@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_colors_chained_list.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:24:18 by nstoutze          #+#    #+#             */
-/*   Updated: 2024/01/12 20:18:54 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:03:22 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	get_first_color_line_index(t_xpm *xpm)
 			return ;
 		}
 	}
+	xpm->first_color_line_index = i;
 }
 
 void	build_colors_chained_list(t_xpm *xpm)

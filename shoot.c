@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:01:57 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/10 14:05:06 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/14 13:27:37 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,57 +41,57 @@ int	check_outcode(t_pos outcode0, t_pos outcode1)
 	return (-1);
 }
 
-int	hit_ennemies(t_game *game, t_col enn)
+t_pos	get_p(t_pos outcodeout, t_pos aim, t_col enn, t_pos ps)
 {
-	t_pos	ps;
-	t_pos	aim;
-	t_pos	outcode0;
-	t_pos	outcode1;
-	t_pos	outcodeout;
 	t_pos	p;
 
-	ps.x = game->player->px;
-	ps.y = game->player->py;
-	aim = game->player->aim;
-	outcode0 = is_in_col(game->player->aim, enn);
-	outcode1 = is_in_col(ps, enn);
-	while (check_outcode(outcode0, outcode1) == -1)
+	if (outcodeout.x == 1)
 	{
-		outcodeout = outcode1;
-		if (outcode0.x != 0 || outcode0.y != 0)
-			outcodeout = outcode0;
-		if (outcodeout.x == 1)
+		p.x = aim.x + (ps.x - aim.x) * (enn.ymax - aim.y) / (ps.y - aim.y);
+		p.y = enn.ymax;
+	}
+	else if (outcodeout.x == -1)
+	{
+		p.x = aim.x + (ps.x - aim.x) * (enn.ymin - aim.y) / (ps.y - aim.y);
+		p.y = enn.ymin;
+	}
+	else if (outcodeout.y == 1)
+	{
+		p.y = aim.y + (ps.y - aim.y) * (enn.xmax - aim.x) / (ps.x - aim.x);
+		p.x = enn.xmax;
+	}
+	else if (outcodeout.y == -1)
+	{
+		p.y = aim.y + (ps.y - aim.y) * (enn.xmin - aim.x) / (ps.x - aim.x);
+		p.x = enn.xmin;
+	}
+	return (p);
+}
+
+int	hit_ennemies(t_game *game, t_col enn, t_pos ps, t_pos aim)
+{
+	t_outcodes	outc;
+	t_pos		outcodeout;
+	t_pos		p;
+
+	outc.o0 = is_in_col(game->player->aim, enn);
+	outc.o1 = is_in_col(ps, enn);
+	while (check_outcode(outc.o0, outc.o1) == -1)
+	{
+		outcodeout = outc.o1;
+		if (outc.o0.x != 0 || outc.o0.y != 0)
+			outcodeout = outc.o0;
+		p = get_p(outcodeout, aim, enn, ps);
+		if (outcodeout.x == outc.o0.x && outcodeout.y == outc.o0.y)
 		{
-			p.x = aim.x + (ps.x - aim.x) * (enn.ymax - aim.y) / (ps.y - aim.y);
-			p.y = enn.ymax;
-		}
-		else if (outcodeout.x == -1)
-		{
-			p.x = aim.x + (ps.x - aim.x) * (enn.ymin - aim.y) / (ps.y - aim.y);
-			p.y = enn.ymin;
-		}
-		else if (outcodeout.y == 1)
-		{
-			p.y = aim.y + (ps.y - aim.y) * (enn.xmax - aim.x) / (ps.x - aim.x);
-			p.x = enn.xmax;
-		}
-		else if (outcodeout.y == -1)
-		{
-			p.y = aim.y + (ps.y - aim.y) * (enn.xmin - aim.x) / (ps.x - aim.x);
-			p.x = enn.xmin;
-		}
-		if (outcodeout.x == outcode0.x && outcodeout.y == outcode0.y)
-		{
-			aim.x = p.x;
-			aim.y = p.y;
-			outcode0 = is_in_col(aim, enn);
+			aim = p;
+			outc.o0 = is_in_col(aim, enn);
 		}
 		else
 		{
-			ps.x = p.x;
-			ps.y = p.y;
-			outcode1 = is_in_col(ps, enn);
+			ps = p;
+			outc.o1 = is_in_col(ps, enn);
 		}
 	}
-	return (check_outcode(outcode0, outcode1));
+	return (check_outcode(outc.o0, outc.o1));
 }

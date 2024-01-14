@@ -16,6 +16,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
@@ -162,7 +163,7 @@ typedef struct s_scast
 	t_p		sprite_size;
 	t_pos	transform;
 	t_p		tex;
-
+	int		sprite_screenx;
 }				t_scast;
 
 typedef struct s_dist
@@ -187,8 +188,15 @@ typedef struct s_mouse
 	t_pos	act_pos;
 }				t_mouse;
 
+typedef struct s_outcodes
+{
+	t_pos	o0;
+	t_pos	o1;
+}				t_outcodes;
+
 typedef struct s_game
 {
+	int			error;
 	int			transition;
 	int			*map;
 	t_pos		plan;
@@ -211,6 +219,7 @@ typedef struct s_game
 	int			map_h;
 	int			map_w;
 	int			map_active;
+	char		*name_texture[4];
 	t_anim		*anim;
 	t_sprites	sprite;
 	t_ennemies	*ennemies;
@@ -224,13 +233,20 @@ typedef struct s_game
 }				t_game;
 
 void		start_transi(t_game *game, int color);
-int			hit_ennemies(t_game *game, t_col enn);
+int			hit_ennemies(t_game *game, t_col enn, t_pos ps, t_pos aim);
+int			check_g(t_game *game, int x, int y);
+char		*get_textures(t_game *game, char buf[2], char *str, int fd);
 int			get_number(char c);
 void		draw_crossh(t_game *game);
 void		update_ennemies(t_game *game);
 void		state(t_game *game);
 char		**ft_split(char *str, char *charset);
 void		reset_ennemies(t_game *game);
+int			ft_is_space(char c);
+void		drawsprite(t_game *game, t_pos spos, t_anim *text);
+void		get_name_text(t_game *game);
+void		show_sprite(t_game *game, t_scast sc, t_p pos, t_anim *text);
+void		show_wall(t_game *game, int nb_ray, int lineHeight);
 int			ft_atoi(char *str);
 float		ret_abs(float i);
 int			create_color(char *str);
@@ -272,7 +288,7 @@ void		move_left(t_game *game);
 void		raycasting(t_game *game);
 void		move_right(t_game *game);
 int			ft_atoi(char *str);
-t_game		*init_game(t_player *player);
+t_game		*init_game(t_player *player, char *str);
 int			*all_text(t_game *game);
 t_player	*init_player(void);
 void		init_sprites(t_game *game);
@@ -291,7 +307,8 @@ char		*get_character(t_game *game, char buf[2], char *str, int fd);
 void		free_ennemies(t_game *game);
 void		free_forces(t_game *game);
 char		*add_malloc(char *str, char buf);
-int			get_color(char *str);
+int			get_color(char *str, t_game *game);
+void		exit_game_code(t_game *game, int i, char *str);
 void		free_dptr(char	**dptr);
 void		set_player_pos(t_game *game, int offx, int offy, char c);
 void		get_map(t_game *game, char *name);

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:15:06 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/10 15:48:01 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/13 22:02:29 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	boost(t_game *game, float pa, int force, t_ennemies *enn)
 	new->angle = pa;
 	new->force = force;
 	last = game->dir_vec;
-	while (last->next != 0)
+	while (last->next)
 		last = last->next;
 	last->next = new;
 }
@@ -83,8 +83,8 @@ void	reset_boost(t_game *game)
 		if (act->force <= 0)
 		{
 			last->next = act->next;
-			act = last->next;
 			free(act);
+			act = last->next;
 		}
 		else
 		{
@@ -98,6 +98,7 @@ void	apply_boost(t_game *game)
 {
 	t_dir_vec	*last;
 
+	reset_boost(game);
 	last = game->dir_vec->next;
 	while (last)
 	{
@@ -105,5 +106,4 @@ void	apply_boost(t_game *game)
 		last->force --;
 		last = last->next;
 	}
-	reset_boost(game);
 }

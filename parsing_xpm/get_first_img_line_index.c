@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_first_img_line_index.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 23:08:49 by nstoutze          #+#    #+#             */
-/*   Updated: 2023/12/10 23:08:49 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:04:17 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,20 @@ void	get_first_img_line_index(t_xpm *xpm)
 	int	len_line;
 
 	i = xpm->last_color_line_index;
-	while (xpm->file_lbl[i])
+	while (i >= 0 && xpm->file_lbl[i])
 	{
 		len_line = ft_strlen(xpm->file_lbl[i]);
 		if (xpm->file_lbl[i][0] == '"'
 			&& len_line >= (xpm->width)
-			&& xpm->file_lbl[i][len_line - 4] == '"')
+			&& len_line >= 4 && xpm->file_lbl[i][len_line - 4] == '"')
 		{
 			xpm->first_img_line_index = i;
 			break ;
 		}
 		i++;
 	}
-	xpm->len_first_img_line = xpm_strlen(xpm->file_lbl[i]);
+	if (xpm->file_lbl[i])
+		xpm->len_first_img_line = xpm_strlen(xpm->file_lbl[i]);
+	else
+		xpm->valid = FALSE;
 }

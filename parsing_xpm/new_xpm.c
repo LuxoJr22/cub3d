@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_xpm.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nstoutze <nstoutze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:03:54 by nstoutze          #+#    #+#             */
-/*   Updated: 2024/01/12 19:52:07 by nstoutze         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:04:01 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@ t_xpm	*new_xpm(char *filename)
 	new->img_ints = NULL;
 	new->colorsymbol_mode = 1;
 	new->rectangular = TRUE;
+	new->nb_colors = 0;
+	new->first_color_line_index = 0;
+	new->last_color_line_index = 0;
 	return (new);
 }

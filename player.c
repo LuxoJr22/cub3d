@@ -73,7 +73,7 @@ void	shoot(t_game *game)
 	ennemy = game->ennemies->next;
 	while (ennemy)
 	{
-		if (hit_ennemies(game, ennemy->col) == 1)
+		if (hit_ennemies(game, ennemy->col, pos, game->player->aim) == 1)
 		{
 			ennemy->health -= 1;
 			boost(game, get_angle(ennemy->pos, pos), 30, ennemy);

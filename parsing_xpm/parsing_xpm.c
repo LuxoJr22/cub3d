@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 22:58:35 by nstoutze          #+#    #+#             */
-/*   Updated: 2024/01/11 18:04:08 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/14 15:56:32 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ t_xpm	*parsing_xpm(char *filename)
 			adjust_colors(xpm);
 		get_first_img_line_index(xpm);
 		check_img_rectangular(xpm);
-		if (xpm->rectangular)
+		if (xpm->rectangular && xpm->valid == TRUE)
 			build_img_ints(xpm);
 		else
+		{
 			xpm->valid = FALSE;
+			xpm->img_ints = malloc(0);
+		}
 	}
 	return (xpm);
 }

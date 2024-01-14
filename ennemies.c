@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:31:43 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 18:57:15 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/13 21:37:27 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_ennemy(t_game *game, t_ennemies *ennemy)
 			last->force = 0;
 		last = last->next;
 	}
-	//free_anims(ennemy->text);
+	free_anims(ennemy->text);
 	free(ennemy);
 }
 
@@ -60,8 +60,8 @@ void	reset_ennemies(t_game *game)
 		if (act->health <= 0)
 		{
 			last->next = act->next;
-			act = last->next;
 			free_ennemy(game, act);
+			act = last->next;
 		}
 		else
 		{

@@ -6,42 +6,11 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:05:56 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 18:21:59 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/14 13:33:58 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-char	*reset_str(char *str)
-{
-	char	*ret;
-
-	free(str);
-	ret = malloc(sizeof(char));
-	ret[0] = '\0';
-	return (ret);
-}
-
-char	*add_malloc(char *str, char buf)
-{
-	int		i;
-	char	*str_ret;
-
-	i = 0;
-	while (str[i])
-		i ++;
-	str_ret = malloc(sizeof(char) * (i + 2));
-	i = 0;
-	while (str[i])
-	{
-		str_ret[i] = str[i];
-		i ++;
-	}
-	str_ret[i] = buf;
-	str_ret[i + 1] = '\0';
-	free(str);
-	return (str_ret);
-}
 
 char	*get_character(t_game *game, char buf[2], char *str, int fd)
 {
@@ -49,44 +18,55 @@ char	*get_character(t_game *game, char buf[2], char *str, int fd)
 	{
 		while (read(fd, buf, 1) && buf[0] != '\n')
 			str = add_malloc(str, buf[0]);
-		game->ceil_color = get_color(str);
+		game->ceil_color = get_color(str, game);
 	}
 	if (buf[0] == 'F')
 	{
 		while (read(fd, buf, 1) && buf[0] != '\n')
 			str = add_malloc(str, buf[0]);
-		game->floor_color = get_color(str);
+		game->floor_color = get_color(str, game);
 	}
 	return (str);
 }
 
-void	get_map(t_game *game, char *name)
+char	*assign_name(t_game *game, int fd, int i, char *str)
 {
-	int		fd;
 	char	buf[2];
-	char	*str;
-	int		other;
 
-	other = 0;
-	str = malloc(sizeof(char));
-	str[0] = '\0';
-	fd = open(name, O_RDONLY);
-	while (read(fd, buf, 1))
+	while (read(fd, buf, 1) && buf[0] != '\n')
+		str = add_malloc(str, buf[0]);
+	game->name_texture[i] = ft_strdup(str);
+	return (str);
+}
+
+char	*get_textures(t_game *game, char buf[2], char *str, int fd)
+{
+	char	c;
+	int		i;
+
+	c = buf[0];
+	i = read(fd, buf, 1);
+	if (c == 'N' && buf[0] == 'O')
+		str = assign_name(game, fd, 0, str);
+	else if (c == 'S' && buf[0] == 'O')
+		str = assign_name(game, fd, 1, str);
+	else if (c == 'E' && buf[0] == 'A')
+		str = assign_name(game, fd, 2, str);
+	else if (c == 'W' && buf[0] == 'E')
+		str = assign_name(game, fd, 3, str);
+	else
 	{
-		if (buf[0] == 'F' || buf[0] == 'C')
-		{
-			str = get_character(game, buf, str, fd);
-			other ++;
-			str = reset_str(str);
-		}
-		if ((buf[0] == ' ' || buf[0] == '1') && other == 2)
-		{
-			str = add_malloc(str, buf[0]);
-			while (read(fd, buf, 1) && buf[0] != '\0')
-				str = add_malloc(str, buf[0]);
-			create_map(game, str);
-			str = reset_str(str);
-		}
+		free(str);
+		return (0);
 	}
-	free(str);
+	return (str);
+}
+
+int	check_g(t_game *game, int x, int y)
+{
+	if (game->map[x * game->map_w + y] != 0
+		&& game->map[x * game->map_w + y] != 1
+		&& game->map[x * game->map_w + y] != 68)
+		return (1);
+	return (0);
 }
