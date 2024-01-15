@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/dark_oak_log.xpm
+SO ./assets/dark_oak_log.xpm
+WE ./assets/dark_oak_planks.xpm
+EA ./assets/dark_oak_planks.xpm
 
 F 246,107,131
 C 1,156,187

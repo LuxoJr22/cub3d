@@ -311,6 +311,7 @@ void		free_forces(t_game *game);
 char		*add_malloc(char *str, char buf);
 int			get_color(char *str, t_game *game);
 void		exit_game_code(t_game *game, int i, char *str);
+int			ft_is_in(char *str, char c);
 void		free_dptr(char	**dptr);
 void		set_player_pos(t_game *game, int offx, int offy, char c);
 void		get_map(t_game *game, char *name);

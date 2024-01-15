@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:05:56 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 00:52:53 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 10:02:53 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,19 @@ char	*get_textures(t_game *game, char buf[2], char *str, int fd)
 		return (0);
 	}
 	return (str);
+}
+
+int	ft_is_in(char *str, char c)
+{
+	int	i;
+
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i ++;
+	}
+	return (0);
 }
 
 int	check_g(t_game *game, int x, int y)
