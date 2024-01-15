@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:36:37 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 00:54:11 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:04:22 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	test_text(t_game *game)
 	int	fd;
 	int	i;
 
+	i = 0;
 	while (i < 4)
 	{
 		fd = open(game->name_texture[i], O_RDONLY);
@@ -62,7 +63,7 @@ void	init_sprites(t_game *game)
 	pos.x = game->sprite.pos.x;
 	pos.y = game->sprite.pos.y;
 	game->sprite.col = init_col(pos, 10);
-	game->sprite.anim = get_anims(game, "assets/penny/", 5);
+	game->sprite.anim = get_anims("assets/penny/", 5);
 }
 
 void	init_frames(t_game *game)
@@ -81,8 +82,6 @@ void	init_frames(t_game *game)
 t_game	*init_game(t_player *player, char *str)
 {
 	t_game		*game;
-	int			imgw;
-	int			imgh;
 
 	game = malloc(sizeof(t_game));
 	game->ennemies = malloc(sizeof(t_ennemies));

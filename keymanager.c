@@ -49,10 +49,13 @@ int	key_manager(int keycode, t_game *game)
 
 int	button_mouse(int keycode, int x, int y, t_game *game)
 {
+	(void)x;
+	(void)y;
 	if (keycode == 1)
 	{
 		shoot(game);
 	}
+	return (0);
 }
 
 int	mouse_manager(int x, int y, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 23:45:10 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/13 21:16:27 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:02:10 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	draw_player(t_game *game)
 	int		h;
 	int		i;
 	int		y;
-	t_pos	p1;
-	t_pos	p2;
 
 	i = 0;
 	y = 0;

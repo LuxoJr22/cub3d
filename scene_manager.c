@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:56:51 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/13 22:02:21 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:04:49 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,5 @@ int	scene_manager(t_game *game)
 	game->frame ++;
 	if (game->frame >= 60)
 		game->frame = 0;
+	return (0);
 }

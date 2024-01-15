@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:49:03 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/12 22:16:31 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:02:37 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_col	init_col(t_pos position, int scale)
 	return (hitbox);
 }
 
-int	collision(t_game *game, t_col hit1, t_col hit2)
+int	collision(t_col hit1, t_col hit2)
 {
 	if ((hit1.xmin < hit2.xmax && hit1.ymax > hit2.ymin)
 		&& (hit1.xmax > hit2.xmin && hit1.ymin < hit2.ymax))
@@ -38,7 +38,7 @@ void	collisions(t_game *game)
 
 	pos.x = game->player->px;
 	pos.y = game->player->py;
-	if (collision(game, game->player->col, game->sprite.col)
+	if (collision(game->player->col, game->sprite.col)
 		&& game->sprite.active != 0)
 	{
 		game->player->coin ++;
@@ -48,7 +48,7 @@ void	collisions(t_game *game)
 	ennemy = game->ennemies->next;
 	while (ennemy)
 	{
-		if (collision(game, ennemy->col, game->player->col)
+		if (collision(ennemy->col, game->player->col)
 			&& game->player->time_hit == 0)
 		{
 			boost(game, get_angle(pos, ennemy->pos), 50, 0);

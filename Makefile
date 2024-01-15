@@ -65,7 +65,7 @@ OBJS = ${SRCS:.c=.o}
 NAME = cub3d
 
 .c.o:
-	gcc -I/usr/include -Imlx_linux -O3 -c $< -o ${<:.c=.o}
+	gcc -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o ${<:.c=.o}
 
 
 ${NAME}: ${OBJS}

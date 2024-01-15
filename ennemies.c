@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 13:31:43 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/13 21:37:27 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:03:37 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	move_ennemy(t_game *game, t_ennemies *ennemy)
 	int	force;
 
 	force = 1;
-	if (collision(game, game->player->col, ennemy->range))
+	if (collision(game->player->col, ennemy->range))
 	{
 		if (game->player->px > ennemy->pos.x)
 			ennemy->pos.x += force;

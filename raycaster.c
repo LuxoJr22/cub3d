@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:41:23 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 00:41:54 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 10:59:20 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	drawsprite(t_game *game, t_pos spos, t_anim *text)
 {
 	float	inv_det;
 	t_p		pos;
-	int		d;
 	t_scast	sc;
 
+	inv_det = 0;
 	sc = init_sc(game, sc, inv_det, spos);
 	pos.x = sc.draw_start.x;
 	while (pos.x < sc.draw_end.x)
@@ -96,7 +96,6 @@ void	raycasting(t_game *game)
 {
 	int		nb_ray;
 	int		nb_h;
-	int		lineheight;
 	t_p		m;
 
 	nb_ray = 0;

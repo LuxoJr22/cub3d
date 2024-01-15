@@ -109,15 +109,12 @@ void	create_map(t_game *game, char *str)
 {
 	int	i;
 	t_p	index;
-	int	len_max;
 
 	index.x = 0;
 	index.y = 0;
-	len_max = 0;
 	if (!ft_is_in(str, '0') || !ft_is_in(str, '1'))
 		exit_game_code(game, 7, "Error: wrong map format\n");
 	get_len_max(game, str);
-	len_max = game->map_w;
 	game->map = malloc(sizeof(int) * (game->map_h * game->map_w));
 	i = 0;
 	while (str[i])

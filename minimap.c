@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 14:16:59 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/13 21:14:01 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:00:16 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	create_img(t_game *game)
 {
-	t_p	m;
 	t_p	d;
 	t_p	p;
 	int	side;
 
-	m.x = 0;
-	m.y = 0;
 	side = 16;
 	p.x = (game->player->px / 64);
 	p.y = (game->player->py / 64);
@@ -82,10 +79,9 @@ void	show_map(t_game *game)
 {
 	t_p	o;
 	t_p	p;
-	int	w;
-	int	l;
 	int	side;
 
+	side = 16;
 	if (game->map_w * 16 > 960)
 		side = 960 / game->map_w;
 	else if (game->map_h * 16 > 640 && 640 / game->map_h < side)

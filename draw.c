@@ -29,7 +29,6 @@ void	draw_crossh(t_game *game)
 
 void	draw_back(t_game *game, t_pos start, t_pos length, int color)
 {
-	int	side;
 	int	i;
 	int	z;
 

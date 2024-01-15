@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:24:56 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 18:04:32 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:04:12 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,11 @@ void	get_anim(char *path, int i, t_anim *act)
 	free(name);
 }
 
-t_anim	*get_anims(t_game *game, char *path, int nb_sprites)
+t_anim	*get_anims(char *path, int nb_sprites)
 {
 	int		i;
-	char	*name;
 	t_anim	*start;
 	t_anim	*act;
-	t_anim	*next;
 
 	i = 0;
 	start = malloc(sizeof(t_anim) + 1);

@@ -84,10 +84,6 @@ void	shoot(t_game *game)
 
 int	move(t_game *game)
 {
-	int		mx;
-	int		my;
-	float	pa;
-
 	if (game->player->dx == 1)
 		move_left(game);
 	if (game->player->dx == -1)
@@ -101,4 +97,5 @@ int	move(t_game *game)
 	game->mouse.pos.x = game->mouse.act_pos.x;
 	if (game->player->cm != 0)
 		move_camera(game);
+	return (0);
 }

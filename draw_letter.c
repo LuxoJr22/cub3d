@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 18:37:31 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/12 16:44:50 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:01:41 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	get_font(t_game *game, char *file)
 	t_xpm	**alphabet;
 	char	*str;
 	int		i;
-	t_p		img;
 
 	i = 0;
 	alphabet = malloc(sizeof(t_xpm *) * 26);
@@ -35,10 +34,8 @@ void	get_font(t_game *game, char *file)
 void	show_str(t_game *game, int x, int y, char *str)
 {
 	int	i;
-	int	l;
 
 	i = 0;
-	l = 0;
 	while (str[i])
 	{
 		if (str[i] >= 'a' && str[i] <= 'z')

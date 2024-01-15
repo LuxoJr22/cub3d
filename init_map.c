@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 13:33:28 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 10:00:07 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:00:46 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 void	check_map(t_game *game)
 {
 	t_p	p;
-	int	er;
 
 	p.x = 0;
-	er = 0;
 	while (p.x < game->map_h)
 	{
 		p.y = 0;
@@ -76,7 +74,6 @@ void	get_map(t_game *game, char *name)
 	char	buf[2];
 	char	*str;
 	int		other;
-	char	c;
 
 	game->name_texture[0] = malloc(0);
 	game->name_texture[1] = malloc(0);

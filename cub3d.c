@@ -43,6 +43,7 @@ int	leave(t_game *game)
 	game->mouse.pos.x = 0;
 	game->mouse.act_pos.x = 0;
 	game->player->cm = 0;
+	return (0);
 }
 
 void	is_good_arg(char *name)
@@ -81,7 +82,6 @@ int	main(int argc, char **argv)
 {
 	t_game		*game;
 	t_player	*player;
-	void		*params;
 	t_pos		pos;
 
 	if (argc != 2)

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:50:52 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 02:53:25 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:01:56 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	show_sprite(t_game *game, t_scast sc, t_p pos, t_anim *text)
 void	drawsprites(t_game *game)
 {
 	t_ennemies	*ennemy;
-	t_sprites	*sprite;
 	t_pos		pos;
 
 	ennemy = game->ennemies->next;

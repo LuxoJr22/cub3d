@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:59:44 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 14:44:32 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:04:27 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init_enemies(t_game *game, char *name, int nb_sprites, t_pos pos)
 
 	ennemy = malloc(sizeof(t_ennemies));
 	ennemy->next = 0;
-	ennemy->text = get_anims(game, name, nb_sprites);
+	ennemy->text = get_anims(name, nb_sprites);
 	ennemy->pos = pos;
 	ennemy->col = init_col(pos, 10);
 	ennemy->range = init_col(pos, 500);

@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:34:56 by luxojr            #+#    #+#             */
-/*   Updated: 2023/12/27 11:57:32 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:01:26 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void	raycast(t_game *game, float ra)
 {
-	int		mp;
-	int		dof;
-	t_pos	r;
-	t_pos	o;
-
 	game->raycast.mt.x = 0;
 	game->raycast.mt.y = 0;
 	game->raycast.dis.x = 1000000;
