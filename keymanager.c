@@ -25,25 +25,19 @@ void	open_door(t_game *game, int keycode)
 
 int	key_manager(int keycode, t_game *game)
 {
-	if (keycode == 32)
-		boost(game, game->player->pa, 50, 0);
-	if (keycode == 65363)
-		game->player->cm = 1;
-	if (keycode == 65361)
-		game->player->cm = -1;
-	if (keycode == 100)
-		game->player->dx += 1;
-	if (keycode == 113)
-		game->player->dx += -1;
-	if (keycode == 115)
-		game->player->dy += 1;
-	if (keycode == 122)
-		game->player->dy += -1;
-	if (keycode == 65289)
-		game->map_active = 1;
-	if (keycode == 65505)
-		game->player->sprint = 1.5;
-	open_door(game, keycode);
+	if (game->scene == 1)
+		game_input(game, keycode);
+	if (game->scene == 0)
+		menu_input(game, keycode);
+	return (1);
+}
+
+int	relinput(int keycode, t_game *game)
+{
+	if (keycode == 65307)
+		exit_game(game);
+	if (game->scene == 1)
+		game_relinput(game, keycode);
 	return (1);
 }
 
@@ -51,9 +45,10 @@ int	button_mouse(int keycode, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
-	if (keycode == 1)
+	if (keycode == 1 && game->scene == 1 && game->player->mana >= 10)
 	{
 		shoot(game);
+		game->player->mana -= 10;
 	}
 	return (0);
 }
@@ -62,28 +57,5 @@ int	mouse_manager(int x, int y, t_game *game)
 {
 	game->mouse.act_pos.x = x;
 	game->mouse.act_pos.y = y;
-	return (1);
-}
-
-int	relinput(int keycode, t_game *game)
-{
-	if (keycode == 65307)
-		exit_game(game);
-	if (keycode == 65363)
-		game->player->cm = 0;
-	if (keycode == 65361)
-		game->player->cm = 0;
-	if (keycode == 100)
-		game->player->dx -= 1;
-	if (keycode == 113)
-		game->player->dx -= -1;
-	if (keycode == 115)
-		game->player->dy -= 1;
-	if (keycode == 122)
-		game->player->dy -= -1;
-	if (keycode == 65289)
-		game->map_active = 0;
-	if (keycode == 65505)
-		game->player->sprint = 1;
 	return (1);
 }

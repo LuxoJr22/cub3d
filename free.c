@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 13:17:09 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/13 02:36:00 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:45:12 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_dptr(char	**dptr)
 	free(dptr);
 }
 
-void	free_xpm_array(t_xpm **array, int size)
+void	free_xpm_array(t_xpm **array, int size, int is_malloc)
 {
 	if (!array)
 		return ;
@@ -36,7 +36,8 @@ void	free_xpm_array(t_xpm **array, int size)
 			array[size] = NULL;
 		}
 	}
-	free(array);
+	if (is_malloc)
+		free(array);
 }
 
 void	free_xpms(t_game *game)
@@ -46,7 +47,10 @@ void	free_xpms(t_game *game)
 	free_xpm(game->west_xpm);
 	free_xpm(game->east_xpm);
 	free_xpm(game->door_xpm);
-	free_xpm_array(game->alphabet, 26);
+	free_xpm(game->back);
+	free_xpm_array(game->health, 3, 0);
+	free_xpm_array(game->mana, 2, 0);
+	free_xpm_array(game->alphabet, 26, 1);
 	if (game->sprite.active)
 		free_anims(game->sprite.anim);
 }

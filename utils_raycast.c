@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:39:24 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/11 14:42:59 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 15:19:54 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ void	get_hmt(t_game *game)
 {
 	if (game->rcast.side == 0)
 	{
-		game->rcast.perpwalldist = (game->rcast.sidedist.x
-				- game->rcast.deltadist.x);
+		game->rcast.sidedist.x -= game->rcast.deltadist.x;
+		game->rcast.perpwalldist = game->rcast.sidedist.x;
 		game->rcast.hmt = 1;
 		if (game->rcast.raydir.x > 0)
 			game->rcast.hmt = 3;
 	}
 	else
 	{
-		game->rcast.perpwalldist = (game->rcast.sidedist.y
-				- game->rcast.deltadist.y);
+		game->rcast.sidedist.y -= game->rcast.deltadist.y;
+		game->rcast.perpwalldist = game->rcast.sidedist.y;
 		game->rcast.hmt = 0;
 		if (game->rcast.raydir.y > 0)
 			game->rcast.hmt = 2;

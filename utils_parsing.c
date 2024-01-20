@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:05:56 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 11:05:24 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:40:06 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,11 @@ int	check_g(t_game *game, int x, int y)
 {
 	if (game->map[x * game->map_w + y] != 0
 		&& game->map[x * game->map_w + y] != 1
-		&& game->map[x * game->map_w + y] != 68)
+		&& game->map[x * game->map_w + y] != 68
+		&& game->map[x * game->map_w + y] != 87
+		&& game->map[x * game->map_w + y] != 83
+		&& game->map[x * game->map_w + y] != 69
+		&& game->map[x * game->map_w + y] != 78)
 		return (1);
 	return (0);
 }

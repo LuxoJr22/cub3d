@@ -82,7 +82,6 @@ int	main(int argc, char **argv)
 {
 	t_game		*game;
 	t_player	*player;
-	t_pos		pos;
 
 	if (argc != 2)
 		exit_game_code(0, 10, "Error: not good amounts of argument\n");
@@ -94,9 +93,6 @@ int	main(int argc, char **argv)
 	get_font(game, "assets/font/");
 	game->plan.x = sin(game->player->pa) * 0.66;
 	game->plan.y = -1 * (cos(game->player->pa) * 0.66);
-	pos.x = 28 * 64 + 32;
-	pos.y = 3 * 64 + 32;
-	init_enemies(game, "assets/gaper/", 9, pos);
 	mlx_hooks(game);
 	return (EXIT_SUCCESS);
 }

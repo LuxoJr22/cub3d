@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 02:39:09 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 02:39:42 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/20 15:35:53 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,40 @@ void	get_name_text(t_game *game)
 		game->name_texture[i] = get_file_str(game->name_texture[i]);
 		i ++;
 	}
+}
+
+t_pos	create_enn_pos(float x, float y)
+{
+	t_pos	pos;
+
+	pos.x = x * 64 + 32;
+	pos.y = y * 64 + 32;
+	return (pos);
+}
+
+void	get_len_max(t_game *game, char *str)
+{
+	int	len;
+	int	len_max;
+	int	i;
+	int	nb_ret;
+
+	i = 0;
+	len = 0;
+	len_max = 0;
+	nb_ret = 0;
+	while (str[i])
+	{
+		len ++;
+		if (str[i] == '\n')
+		{
+			if (len - 1 > len_max)
+				len_max = len - 1;
+			len = 0;
+			nb_ret ++;
+		}
+		i ++;
+	}
+	game->map_h = nb_ret;
+	game->map_w = len_max;
 }

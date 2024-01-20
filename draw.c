@@ -96,3 +96,9 @@ int	is_visible(t_game *game)
 		return (1);
 	return (0);
 }
+
+void	draw_hud(t_game *game)
+{
+	draw_health(game);
+	draw_mana(game);
+}

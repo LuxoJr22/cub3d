@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:54:29 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/05 22:27:29 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/15 13:00:45 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,5 @@ void	start_transi(t_game *game, int color)
 			game->transition --;
 	}
 	else if (game->transition == 0)
-		game->scene = 0;
+		game->scene = 2;
 }

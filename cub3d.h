@@ -110,6 +110,8 @@ typedef struct s_ennemies
 
 typedef struct s_player
 {
+	int		mana;
+	int		manamax;
 	float	px;
 	float	py;
 	int		dx;
@@ -124,6 +126,7 @@ typedef struct s_player
 	int		is_jump;
 	int		coin;
 	int		health;
+	int		maxhealth;
 	int		is_hit;
 	int		time_hit;
 	t_pos	aim;
@@ -199,6 +202,8 @@ typedef struct s_game
 	int			is_ceiling;
 	int			error;
 	int			transition;
+	t_xpm		*back;
+	t_p			off;
 	int			*map;
 	t_pos		plan;
 	void		*mlx;
@@ -221,6 +226,8 @@ typedef struct s_game
 	int			map_w;
 	int			map_active;
 	char		*name_texture[4];
+	t_xpm		*health[3];
+	t_xpm		*mana[2];
 	t_anim		*anim;
 	t_sprites	sprite;
 	t_ennemies	*ennemies;
@@ -234,14 +241,25 @@ typedef struct s_game
 }				t_game;
 
 void		start_transi(t_game *game, int color);
+void		init_frames(t_game *game);
+void		regen_mana(t_game *game);
 int			hit_ennemies(t_game *game, t_col enn, t_pos ps, t_pos aim);
+void		draw_health(t_game *game);
+void		draw_mana(t_game *game);
+void		show_img(t_game *game, t_xpm *xpm, t_p pos);
+void		menu_input(t_game *game, int keycode);
+t_pos		create_enn_pos(float x, float y);
 int			check_g(t_game *game, int x, int y);
+void		get_len_max(t_game *game, char *str);
+void		menu_scene(t_game *game);
 char		*get_textures(t_game *game, char buf[2], char *str, int fd);
+void		map_error(t_game *game, t_p p, int act);
 int			get_number(char c);
 void		draw_crossh(t_game *game);
 void		update_ennemies(t_game *game);
 void		state(t_game *game);
 char		**ft_split(char *str, char *charset);
+void		draw_hud(t_game *game);
 void		reset_ennemies(t_game *game);
 int			ft_is_space(char c);
 void		drawsprite(t_game *game, t_pos spos, t_anim *text);
@@ -323,12 +341,17 @@ void		free_xpms(t_game *game);
 int			exit_game(t_game *game);
 void		drawsprites(t_game *game);
 void		init_enemies(t_game *game, char *name, int nb_sprites, t_pos pos);
+void		init_sprite(t_game *game, t_pos pos);
 void		free_anims(t_anim *anim);
 int			collision(t_col hit1, t_col hit2);
 t_anim		*get_anims(char *path, int nb_sprites);
+void		game_scene(t_game *game);
 void		get_font(t_game *game, char *file);
 void		apply_boost(t_game *game);
 float		get_angle(t_pos	subject, t_pos object);
+void		game_input(t_game *game, int keycode);
+void		game_relinput(t_game *game, int keycode);
+void		open_door(t_game *game, int keycode);
 void		show_str(t_game *game, int x, int y, char *str);
 char		*ft_strjoin_f(char *s1, char *s2, int mode);
 

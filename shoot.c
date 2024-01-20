@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:01:57 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/14 13:27:37 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/19 13:26:54 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ t_pos	get_p(t_pos outcodeout, t_pos aim, t_col enn, t_pos ps)
 {
 	t_pos	p;
 
-	if (outcodeout.x == 1)
+	if (outcodeout.y == 1)
 	{
 		p.x = aim.x + (ps.x - aim.x) * (enn.ymax - aim.y) / (ps.y - aim.y);
 		p.y = enn.ymax;
 	}
-	else if (outcodeout.x == -1)
+	else if (outcodeout.y == -1)
 	{
 		p.x = aim.x + (ps.x - aim.x) * (enn.ymin - aim.y) / (ps.y - aim.y);
 		p.y = enn.ymin;
 	}
-	else if (outcodeout.y == 1)
+	else if (outcodeout.x == 1)
 	{
 		p.y = aim.y + (ps.y - aim.y) * (enn.xmax - aim.x) / (ps.x - aim.x);
 		p.x = enn.xmax;
 	}
-	else if (outcodeout.y == -1)
+	else if (outcodeout.x == -1)
 	{
 		p.y = aim.y + (ps.y - aim.y) * (enn.xmin - aim.x) / (ps.x - aim.x);
 		p.x = enn.xmin;
@@ -79,7 +79,7 @@ int	hit_ennemies(t_game *game, t_col enn, t_pos ps, t_pos aim)
 	while (check_outcode(outc.o0, outc.o1) == -1)
 	{
 		outcodeout = outc.o1;
-		if (outc.o0.x != 0 || outc.o0.y != 0)
+		if (outc.o0.x + outc.o0.y > outc.o1.x + outc.o1.y)
 			outcodeout = outc.o0;
 		p = get_p(outcodeout, aim, enn, ps);
 		if (outcodeout.x == outc.o0.x && outcodeout.y == outc.o0.y)
@@ -94,4 +94,10 @@ int	hit_ennemies(t_game *game, t_col enn, t_pos ps, t_pos aim)
 		}
 	}
 	return (check_outcode(outc.o0, outc.o1));
+}
+
+void	regen_mana(t_game *game)
+{
+	if (game->frame % 60 == 0 && game->player->mana < game->player->manamax)
+		game->player->mana ++;
 }

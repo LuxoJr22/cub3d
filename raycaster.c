@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:41:23 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 10:59:20 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/20 15:31:16 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,30 +92,35 @@ void	raycaster(t_game *game, int nb_ray)
 	show_wall(game, nb_ray, lineheight);
 }
 
+void	get_aim(t_game *game)
+{
+	game->player->aim.x = game->player->px
+		+ (game->rcast.perpwalldist * cos(game->player->pa) * 64);
+	game->player->aim.y = game->player->py
+		+ (game->rcast.perpwalldist * sin(game->player->pa) * 64);
+}
+
 void	raycasting(t_game *game)
 {
 	int		nb_ray;
 	int		nb_h;
 	t_p		m;
 
-	nb_ray = 0;
+	nb_ray = -1;
 	nb_h = -1;
 	while (game->is_ceiling && ++nb_h < 640)
 		floor_cast(game, nb_h);
-	while (nb_ray < 960)
+	while (++nb_ray < 960)
 	{
 		raycaster(game, nb_ray);
 		if (nb_ray == 480)
-		{
-			game->player->aim.x = game->rcast.map.x * 64;
-			game->player->aim.y = game->rcast.map.y * 64;
-		}
-		nb_ray ++;
+			get_aim(game);
 	}
 	if (game->sprite.active || game->ennemies->next != 0)
 		drawsprites(game);
 	m.x = (int)(game->player->px + ((game->player->pdx * 2)) * 4) / 64;
 	m.y = (int)(game->player->py + ((game->player->pdy * 2)) * 4) / 64;
+	draw_hud(game);
 	if (game->map[m.y * game->map_w + m.x] == 'D')
 		show_str(game, 200, 400, "press e to open the door");
 }

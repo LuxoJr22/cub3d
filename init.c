@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 21:59:44 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 11:04:27 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/20 15:32:19 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ t_player	*init_player(void)
 	player->is_jump = 0;
 	player->coin = 0;
 	player->health = 10;
+	player->maxhealth = player->health;
+	player->mana = 50;
+	player->manamax = player->mana;
 	player->is_hit = 0;
 	player->time_hit = 0;
 	return (player);
@@ -76,4 +79,17 @@ void	set_player_pos(t_game *game, int offx, int offy, char c)
 		game->player->pa = PI;
 	game->player->pdx = cos(game->player->pa) * 5;
 	game->player->pdy = sin(game->player->pa) * 5;
+}
+
+void	init_frames(t_game *game)
+{
+	game->img.img = mlx_new_image(game->mlx, 960, 640);
+	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits,
+			&game->img.line_length, &game->img.endian);
+	game->frame1.img = mlx_new_image(game->mlx, 960, 640);
+	game->frame1.addr = mlx_get_data_addr(game->frame1.img, &game->frame1.bits,
+			&game->frame1.line_length, &game->frame1.endian);
+	game->frame2.img = mlx_new_image(game->mlx, 960, 640);
+	game->frame2.addr = mlx_get_data_addr(game->frame2.img, &game->frame2.bits,
+			&game->frame2.line_length, &game->frame2.endian);
 }

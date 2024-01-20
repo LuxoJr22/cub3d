@@ -40,43 +40,30 @@ int	get_color(char *str, t_game *game)
 	return (get_trgb(0, r, g, b));
 }
 
-void	get_len_max(t_game *game, char *str)
-{
-	int	len;
-	int	len_max;
-	int	i;
-	int	nb_ret;
-
-	i = 0;
-	len = 0;
-	len_max = 0;
-	nb_ret = 0;
-	while (str[i])
-	{
-		len ++;
-		if (str[i] == '\n')
-		{
-			if (len - 1 > len_max)
-				len_max = len - 1;
-			len = 0;
-			nb_ret ++;
-		}
-		i ++;
-	}
-	game->map_h = nb_ret;
-	game->map_w = len_max;
-}
-
 void	fill_g(t_game *game, int i, t_p index, char *str)
 {
 	if (str[i] == ' ')
 		game->map[i + index.x] = 2;
 	else if (str[i] == '0' || str[i] == '1')
 		game->map[i + index.x] = str[i] - 48;
-	else if (str[i] == 'D')
+	else if (str[i] == 'D' || str[i] == 'N' || str[i] == 'S'
+		|| str[i] == 'W' || str[i] == 'E')
 		game->map[i + index.x] = str[i];
 	else
 		game->map[i + index.x] = 0;
+}
+
+void	special_character(t_game *game, char *str, int i, t_p index)
+{
+	if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
+		set_player_pos(game, (i + index.x - index.y * game->map_w),
+			(i + index.x) / game->map_w, str[i]);
+	if (str[i] == 'G')
+		init_enemies(game, "assets/ghost/", 3, create_enn_pos((i + index.x
+					- index.y * game->map_w), (i + index.x) / game->map_w));
+	if (str[i] == 'C')
+		init_sprite(game, create_enn_pos((i + index.x
+					- index.y * game->map_w), (i + index.x) / game->map_w));
 }
 
 t_p	fill_map(t_game *game, char *str, int i, t_p index)
@@ -84,9 +71,7 @@ t_p	fill_map(t_game *game, char *str, int i, t_p index)
 	int	is_end;
 
 	is_end = 0;
-	if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W' || str[i] == 'E')
-		set_player_pos(game, (i + index.x - index.y * game->map_w),
-			(i + index.x) / game->map_w, str[i]);
+	special_character(game, str, i, index);
 	if (str[i] != '\n')
 		fill_g(game, i, index, str);
 	else if (str[i] == '\n')

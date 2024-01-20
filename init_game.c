@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:36:37 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/15 11:04:22 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/20 15:32:14 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,19 @@ void	is_text_valid(t_game *game)
 	}
 }
 
+void	init_sprite(t_game *game, t_pos pos)
+{
+	game->sprite.pos.x = pos.x;
+	game->sprite.pos.y = pos.y;
+	game->sprite.pos.z = 20;
+	game->sprite.active = 1;
+	pos.x = game->sprite.pos.x;
+	pos.y = game->sprite.pos.y;
+	game->sprite.col = init_col(pos, 10);
+}
+
 void	init_sprites(t_game *game)
 {
-	t_pos	pos;
-
 	get_name_text(game);
 	test_text(game);
 	game->north_xpm = parsing_xpm(game->name_texture[0]);
@@ -54,29 +63,15 @@ void	init_sprites(t_game *game)
 	game->east_xpm = parsing_xpm(game->name_texture[2]);
 	game->west_xpm = parsing_xpm(game->name_texture[3]);
 	game->door_xpm = parsing_xpm("assets/door.xpm");
-	is_text_valid(game);
+	game->back = parsing_xpm("assets/background/4.xpm");
 	game->textures = all_text(game);
-	game->sprite.pos.x = 27 * 64 + 32;
-	game->sprite.pos.y = 10 * 64 + 32;
-	game->sprite.pos.z = 20;
-	game->sprite.active = 1;
-	pos.x = game->sprite.pos.x;
-	pos.y = game->sprite.pos.y;
-	game->sprite.col = init_col(pos, 10);
 	game->sprite.anim = get_anims("assets/penny/", 5);
-}
-
-void	init_frames(t_game *game)
-{
-	game->img.img = mlx_new_image(game->mlx, 960, 640);
-	game->img.addr = mlx_get_data_addr(game->img.img, &game->img.bits,
-			&game->img.line_length, &game->img.endian);
-	game->frame1.img = mlx_new_image(game->mlx, 960, 640);
-	game->frame1.addr = mlx_get_data_addr(game->frame1.img, &game->frame1.bits,
-			&game->frame1.line_length, &game->frame1.endian);
-	game->frame2.img = mlx_new_image(game->mlx, 960, 640);
-	game->frame2.addr = mlx_get_data_addr(game->frame2.img, &game->frame2.bits,
-			&game->frame2.line_length, &game->frame2.endian);
+	game->health[0] = parsing_xpm("assets/health/empty.xpm");
+	game->health[1] = parsing_xpm("assets/health/half.xpm");
+	game->health[2] = parsing_xpm("assets/health/heart.xpm");
+	game->mana[0] = parsing_xpm("assets/mana/mana.xpm");
+	game->mana[1] = parsing_xpm("assets/mana/mana_empty.xpm");
+	is_text_valid(game);
 }
 
 t_game	*init_game(t_player *player, char *str)
@@ -96,9 +91,12 @@ t_game	*init_game(t_player *player, char *str)
 	game->map_h = 8;
 	game->map_w = 8;
 	game->transition = -1;
-	game->scene = 1;
+	game->scene = 0;
 	game->error = 0;
 	game->is_ceiling = 0;
+	game->off.x = 0;
+	game->off.y = 0;
+	game->sprite.active = 0;
 	get_map(game, str);
 	game->frame = 0;
 	return (game);
