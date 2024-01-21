@@ -1,0 +1,24 @@
+/* XPM */
+static char * exemple_xpm[] = {
+"16 16 4 1",
+"  c None",
+". c #000000",
+"X c #FFFFFF",
+"o c #FF0000",
+"                ",
+"   .......      ",
+"   .XXXXX.o     ",
+"   .XXXXX.oo    ",
+"   .XXXXX.ooo   ",
+"   .XXXXX.oooo  ",
+"   .......ooooo ",
+"   oooooooooooo ",
+"   ooooooooooo  ",
+"   oooooooooo   ",
+"   ooooooooo    ",
+"   oooooooo     ",
+"   ooooooo      ",
+"   oooooo       ",
+"   ooooo        ",
+"                "
+};
