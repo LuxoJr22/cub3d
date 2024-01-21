@@ -83,7 +83,8 @@ t_p	fill_map(t_game *game, char *str, int i, t_p index)
 			game->map[i + index.x] = 2;
 			index.x ++;
 		}
-		game->map[i + index.x] = 2;
+		if (is_end == 1)
+			game->map[i + index.x] = 2;
 		if (is_end == 0)
 			index.x --;
 	}
