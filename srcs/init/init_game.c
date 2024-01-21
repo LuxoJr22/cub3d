@@ -6,7 +6,7 @@
 /*   By: luxojr <luxojr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:36:37 by luxojr            #+#    #+#             */
-/*   Updated: 2024/01/21 16:28:53 by luxojr           ###   ########.fr       */
+/*   Updated: 2024/01/21 17:26:38 by luxojr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	init_sprites(t_game *game)
 	game->door_xpm = parsing_xpm("assets/door.xpm");
 	game->back = parsing_xpm("assets/background/4.xpm");
 	game->textures = all_text(game);
-	game->sprite.anim = get_anims("assets/penny/", 5);
+	if (game->sprite.active)
+		game->sprite.anim = get_anims("assets/penny/", 5);
 	game->health[0] = parsing_xpm("assets/health/empty.xpm");
 	game->health[1] = parsing_xpm("assets/health/half.xpm");
 	game->health[2] = parsing_xpm("assets/health/heart.xpm");
